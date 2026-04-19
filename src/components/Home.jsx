@@ -134,7 +134,7 @@ function Home() {
                 <Carousel.Item>
                   <div className="carousel-panel panel-one">
                     <div className="carousel-overlay">
-                      <span className="small-label">Casino virtual universitario</span>
+                      <span className="small-label">Casino virtual</span>
                       <h1>Bienvenido a UISBET.COM</h1>
                       <p>
                         Explora nuestro casino virtual con estilo moderno, diseño responsive y
@@ -187,7 +187,7 @@ function Home() {
             </Col>
 
             <Col lg={4}>
-              <Card className="side-card shadow-sm mb-4 h-100 quick-card">
+              {/* <Card className="side-card shadow-sm mb-4 h-100 quick-card">
                 <Card.Body>
                   <h3>Accesos rápidos</h3>
                   <p className="text-muted-light">
@@ -209,7 +209,7 @@ function Home() {
                     </Button>
                   </div>
                 </Card.Body>
-              </Card>
+              </Card> */}
 
               <Card className="side-card shadow-sm h-100">
                 <Card.Body>
