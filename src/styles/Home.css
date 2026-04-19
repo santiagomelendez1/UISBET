@@ -1,0 +1,367 @@
+/* =====================================
+   ESTILOS GENERALES DEL HOME - UISBET
+   Tema: negro + dorado
+===================================== */
+
+:root {
+  --black-main: #0b0b0b;
+  --black-soft: #151515;
+  --black-card: #1d1d1d;
+  --gold-main: #d4af37;
+  --gold-soft: #f0cf6a;
+  --white-soft: #f5f5f5;
+  --gray-soft: #bcbcbc;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--black-main);
+  color: var(--white-soft);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+section,
+header {
+  scroll-margin-top: 90px;
+}
+
+/* NAVBAR */
+.uisbet-navbar {
+  background: rgba(11, 11, 11, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.brand-text {
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--gold-main) !important;
+}
+
+.navbar .nav-link,
+.navbar .dropdown-toggle {
+  color: var(--white-soft) !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .dropdown-toggle:hover {
+  color: var(--gold-main) !important;
+}
+
+.dropdown-menu-dark {
+  background-color: var(--black-card);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/* HERO */
+.hero-section {
+  padding: 110px 0 50px;
+  background: linear-gradient(180deg, #111111 0%, #0b0b0b 100%);
+}
+
+.hero-carousel,
+.side-card,
+.feature-card,
+.game-card,
+.chip-card,
+.saldo-card,
+.info-card,
+.contact-card,
+.team-card {
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  background-color: var(--black-card);
+  color: var(--white-soft);
+}
+
+.carousel-panel {
+  min-height: 430px;
+  display: flex;
+  align-items: center;
+  padding: 40px;
+  background-size: cover;
+  background-position: center;
+}
+
+.panel-one {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)),
+    linear-gradient(120deg, #111111, #3a2b05);
+}
+
+.panel-two {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)),
+    linear-gradient(120deg, #111111, #6b5312);
+}
+
+.panel-three {
+  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65)),
+    linear-gradient(120deg, #000000, #463409);
+}
+
+.carousel-overlay {
+  max-width: 520px;
+}
+
+.carousel-overlay h1,
+.carousel-overlay h2 {
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  font-weight: 700;
+}
+
+.carousel-overlay p {
+  font-size: 1rem;
+  color: #ededed;
+}
+
+.small-label {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 15px;
+  background-color: rgba(212, 175, 55, 0.18);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 999px;
+  color: var(--gold-soft);
+  font-size: 0.9rem;
+}
+
+.text-muted-light {
+  color: var(--gray-soft);
+}
+
+.quick-card,
+.side-card {
+  min-height: 205px;
+}
+
+.quick-links .btn,
+.game-card .btn,
+.chip-card .btn,
+.team-card .btn {
+  transition: transform 0.25s ease;
+}
+
+.quick-links .btn:hover,
+.game-card .btn:hover,
+.chip-card .btn:hover,
+.team-card .btn:hover {
+  transform: translateY(-2px);
+}
+
+.gold-number {
+  color: var(--gold-main);
+  font-weight: 700;
+}
+
+.collapse-card {
+  padding: 15px;
+  border-radius: 12px;
+  background-color: #111111;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+/* SECCIONES */
+.section-dark {
+  background-color: var(--black-main);
+}
+
+.section-gold {
+  background: linear-gradient(180deg, #121212 0%, #17130a 100%);
+}
+
+.section-title span {
+  color: var(--gold-main);
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.section-title h2 {
+  font-size: clamp(1.9rem, 3vw, 2.7rem);
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.section-title p {
+  max-width: 700px;
+  color: #d8d8d8;
+}
+
+.feature-card,
+.game-card,
+.chip-card,
+.team-card,
+.stat-box {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature-card:hover,
+.game-card:hover,
+.chip-card:hover,
+.team-card:hover,
+.stat-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+.feature-icon,
+.game-icon {
+  font-size: 2.3rem;
+  margin-bottom: 12px;
+}
+
+.game-card .card-title,
+.chip-card h4,
+.team-card h5,
+.info-card h4,
+.footer-section h4,
+.footer-section h5 {
+  color: var(--gold-soft);
+}
+
+.saldo-card {
+  background: linear-gradient(135deg, #101010, #231b0c);
+}
+
+.stat-box {
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 16px;
+  padding: 20px 10px;
+}
+
+.stat-box h3 {
+  color: var(--gold-main);
+  font-weight: 700;
+}
+
+.stat-box p {
+  margin-bottom: 0;
+  color: var(--gray-soft);
+}
+
+.dropcap-text::first-letter {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--gold-main);
+  float: left;
+  line-height: 1;
+  padding-right: 8px;
+}
+
+.faq-accordion .accordion-item {
+  background-color: var(--black-card);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  color: var(--white-soft);
+}
+
+.faq-accordion .accordion-button {
+  background-color: #181818;
+  color: var(--white-soft);
+}
+
+.faq-accordion .accordion-button:not(.collapsed) {
+  background-color: #231b0c;
+  color: var(--gold-soft);
+}
+
+.video-placeholder {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px dashed rgba(212, 175, 55, 0.35);
+  background: #101010;
+  color: var(--gray-soft);
+}
+
+.contact-card .form-control {
+  background-color: #101010;
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  color: var(--white-soft);
+}
+
+.contact-card .form-control:focus {
+  background-color: #101010;
+  color: var(--white-soft);
+  border-color: var(--gold-main);
+  box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.15);
+}
+
+.team-avatar {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 12px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--black-main);
+  background: linear-gradient(135deg, var(--gold-main), var(--gold-soft));
+}
+
+.member-photo {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border: 4px solid rgba(212, 175, 55, 0.4);
+}
+
+/* FOOTER */
+.footer-section {
+  padding: 35px 0;
+  background-color: #080808;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+}
+
+.footer-links a {
+  color: var(--white-soft);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--gold-main);
+}
+
+/* RESPONSIVE */
+@media (max-width: 991px) {
+  .hero-section {
+    padding-top: 100px;
+  }
+
+  .carousel-panel {
+    min-height: 360px;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .carousel-panel {
+    min-height: 320px;
+    padding: 24px;
+  }
+
+  .carousel-overlay h1,
+  .carousel-overlay h2 {
+    font-size: 2rem;
+  }
+
+  .section-title h2 {
+    font-size: 1.8rem;
+  }
+}
