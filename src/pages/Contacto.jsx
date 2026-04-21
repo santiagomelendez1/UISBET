@@ -15,7 +15,7 @@ function Contacto() {
             <Col lg={6}>
               <div className="section-title mb-4">
                 <span>Contáctanos</span>
-                <h2>Formulario de contacto</h2>
+                <h2>Formulario de CONTACTO</h2>
               </div>
 
               <Card className="contact-card shadow-sm">
