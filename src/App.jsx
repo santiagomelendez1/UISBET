@@ -5,6 +5,8 @@ import Fichas from './pages/Fichas';
 import Saldo from './pages/Saldo';
 import Empresa from './pages/Empresa';
 import Contacto from './pages/Contacto';
+import Login from './pages/Login';
+import Registro from './pages/Registro';
 import './styles/Home.css';
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
         <Route path="/saldo" element={<Saldo />} />
         <Route path="/empresa" element={<Empresa />} />
         <Route path="/contacto" element={<Contacto />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/registro" element={<Registro />} />
       </Routes>
     </BrowserRouter>
   );

@@ -30,8 +30,9 @@ function NavbarCasino() {
           </Nav>
 
           <div className="d-flex gap-2 mt-3 mt-lg-0">
-            <Button variant="outline-warning">Login</Button>
-            <Button variant="warning">Registro</Button>
+            {/* Botones de Login y Registro, usando link */}
+            <Button as={Link} to="/login" variant="outline-warning">Login</Button>
+            <Button as={Link} to="/registro" variant="warning">Registro</Button>
           </div>
         </Navbar.Collapse>
       </Container>
