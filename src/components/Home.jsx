@@ -18,6 +18,8 @@ import {
   Row,
 } from 'react-bootstrap';
 
+import '../styles/Home.css';
+
 /**
  * Página de incio que muestra: una barra de navegación superior, 
  * un carrusel de presentación,
@@ -68,7 +70,7 @@ function Home() {
                       </p>
 
                       {/* Botones de navegación hacia otras secciones del sitio */}
-                      <div className="d-flex gap-2 flex-wrap">
+                      <div className="d-flex gap-2 flex-wrap items-center justify-content-center">
                         <Button as={Link} to="/juegos" variant="warning">
                           Ver juegos
                         </Button>

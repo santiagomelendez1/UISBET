@@ -80,6 +80,9 @@ header {
   padding: 40px;
   background-size: cover;
   background-position: center;
+  justify-content: center; /* centra verticalmente */
+  align-items: center;     /* centra horizontalmente */
+  text-align: center; 
 }
 
 .panel-one {
@@ -242,9 +245,8 @@ header {
   font-size: 3rem;
   font-weight: 700;
   color: var(--gold-main);
-  float: left;
   line-height: 1;
-  padding-right: 8px;
+  padding-right: 0px;
 }
 
 .faq-accordion .accordion-item {
