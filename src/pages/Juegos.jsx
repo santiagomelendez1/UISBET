@@ -10,7 +10,7 @@ function Juegos() {
       icon: '🃏',
     },
     {
-      title: 'Ruleta',
+      title: 'prueba',
       description: 'Sección preparada para tablero, apuestas y animación del giro.',
       icon: '🎡',
     },
