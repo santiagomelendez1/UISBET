@@ -14,11 +14,7 @@ function Juegos() {
       description: 'Sección preparada para tablero, apuestas y animación del giro.',
       icon: '🎡',
     },
-    {
-      title: 'Blackjack',
-      description: 'Espacio reservado para un próximo minijuego del casino.',
-      icon: '♠️',
-    },
+
   ];
 
   return (
@@ -29,10 +25,8 @@ function Juegos() {
           <div className="section-title mb-4">
             <span>Sección del menú</span>
             <h2>Juegos disponibles</h2>
-            <p>Aquí solo aparece el apartado de juegos.</p>
           </div>
-
-          <Row className="g-4">
+          <Row className="g-4 justify-content-center">
             {games.map((game) => (
               <Col md={6} lg={4} key={game.title}>
                 <Card className="game-card h-100 shadow-sm">
