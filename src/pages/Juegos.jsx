@@ -15,7 +15,7 @@ function Juegos() {
       icon: '🎡',
     },
     {
-      title: 'Blackjack',
+      title: 'anashe',
       description: 'Espacio reservado para un próximo minijuego del casino.',
       icon: '♠️',
     },
