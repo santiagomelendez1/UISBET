@@ -1,0 +1,60 @@
+.form-card {
+  background-color: var(--bg) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 12px !important;
+  box-shadow: var(--shadow) !important;
+}
+
+.form-card h2 {
+  color: var(--accent);
+}
+
+.form-card .form-label {
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.form-card .form-control {
+  background-color: var(--code-bg) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-h) !important;
+  border-radius: 8px;
+}
+
+.form-card .form-control::placeholder {
+  color: var(--text);
+  opacity: 0.6;
+}
+
+.form-card .form-control:focus {
+  border-color: var(--accent-border) !important;
+  box-shadow: 0 0 0 3px var(--accent-bg) !important;
+}
+
+.form-card .input-group .form-control {
+  border-right: none !important;
+  border-radius: 8px 0 0 8px !important;
+}
+
+.form-card .input-group-text {
+  background-color: var(--code-bg) !important;
+  border: 1px solid var(--border) !important;
+  border-left: none !important;
+  border-radius: 0 8px 8px 0 !important;
+  color: var(--text);
+}
+
+.form-card .btn-submit {
+  background-color: var(--accent) !important;
+  border: none !important;
+  color: #fff !important;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 10px;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.form-card .btn-submit:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
