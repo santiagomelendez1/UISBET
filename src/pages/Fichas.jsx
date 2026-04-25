@@ -4,9 +4,13 @@ import FooterCasino from '../components/FooterCasino';
 
 function Fichas() {
   const chipPackages = [
-    { name: 'Paquete Básico', chips: '100 fichas', price: '$5.000' },
-    { name: 'Paquete Intermedio', chips: '500 fichas', price: '$20.000' },
-    { name: 'Paquete Premium', chips: '1.000 fichas', price: '$35.000' },
+    { name: 'PAR', chips: '100 fichas', price: '$5.000' },
+    { name: 'DOBLE PAR', chips: '500 fichas', price: '$20.000' },
+    { name: 'TRIO', chips: '1.000 fichas', price: '$35.000' },
+    { name: 'ESCALERA', chips: '2.000 fichas', price: '$60.000' },
+    { name: 'COLOR', chips: '4.000 fichas', price: '$100.000' },
+    { name: 'FULL HOUSE', chips: '8.000 fichas', price: '$180.000' }
+    
   ];
 
   return (
@@ -17,9 +21,11 @@ function Fichas() {
           <div className="section-title mb-4">
             <span>Compras</span>
             <h2>Paquetes de fichas</h2>
-            <p>Aquí solo aparece el apartado de compra de fichas.</p>
+            <div style={{display:'flex' , justifyContent :"center" }}>
+            <p>Decide bien, apuesta mejor. </p>
+            </div>
           </div>
-
+        
           <Row className="g-4">
             {chipPackages.map((pack) => (
               <Col md={6} lg={4} key={pack.name}>
@@ -27,13 +33,14 @@ function Fichas() {
                   <Card.Body>
                     <h4>{pack.name}</h4>
                     <h3 className="gold-number my-3">{pack.chips}</h3>
-                    <p className="mb-4">Precio estimado: {pack.price}</p>
+                    <p className="mb-4">Precio: {pack.price}</p>
                     <Button variant="outline-warning">Comprar</Button>
                   </Card.Body>
                 </Card>
               </Col>
             ))}
-          </Row>
+          
+          </Row>  
         </Container>
       </section>
       <FooterCasino />
