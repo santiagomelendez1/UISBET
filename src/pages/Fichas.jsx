@@ -1,18 +1,18 @@
 import { Container, Card, Row, Col, Button } from 'react-bootstrap';
 import NavbarCasino from '../components/NavbarCasino';
 import FooterCasino from '../components/FooterCasino';
-
+import Formulario from './Formulario';
+import { useState } from 'react';
 function Fichas() {
+  const [paqueteSeleccionado, setPaqueteSeleccionado] = useState(null)
   const chipPackages = [
-    { name: 'PAR', chips: '100 fichas', price: '$5.000' },
-    { name: 'DOBLE PAR', chips: '500 fichas', price: '$20.000' },
-    { name: 'TRIO', chips: '1.000 fichas', price: '$35.000' },
-    { name: 'ESCALERA', chips: '2.000 fichas', price: '$60.000' },
-    { name: 'COLOR', chips: '4.000 fichas', price: '$100.000' },
-    { name: 'FULL HOUSE', chips: '8.000 fichas', price: '$180.000' }
-    
-  ];
-
+  { nombre: 'PAR',        fichas: 100,   precio: '$5.000' },
+  { nombre: 'DOBLE PAR',  fichas: 500,   precio: '$20.000' },
+  { nombre: 'TRIO',       fichas: 1000,  precio: '$35.000' },
+  { nombre: 'ESCALERA',   fichas: 2000,  precio: '$60.000' },
+  { nombre: 'COLOR',      fichas: 4000,  precio: '$100.000' },
+  { nombre: 'FULL HOUSE', fichas: 8000,  precio: '$180.000' },
+];
   return (
     <>
       <NavbarCasino />
@@ -28,13 +28,13 @@ function Fichas() {
         
           <Row className="g-4">
             {chipPackages.map((pack) => (
-              <Col md={6} lg={4} key={pack.name}>
+              <Col md={6} lg={4} key={pack.nombre}>
                 <Card className="chip-card h-100 text-center">
                   <Card.Body>
-                    <h4>{pack.name}</h4>
-                    <h3 className="gold-number my-3">{pack.chips}</h3>
-                    <p className="mb-4">Precio: {pack.price}</p>
-                    <Button variant="outline-warning">Comprar</Button>
+                    <h4>{pack.nombre}</h4>
+                    <h3 className="gold-number my-3">{pack.fichas + " fichas"}</h3>
+                    <p className="mb-4">Precio: {pack.precio}</p>
+                    <Button variant="outline-warning" onClick={() => setPaqueteSeleccionado(pack)}>Comprar</Button>
                   </Card.Body>
                 </Card>
               </Col>
@@ -43,6 +43,12 @@ function Fichas() {
           </Row>  
         </Container>
       </section>
+      <Formulario
+      paquete = {paqueteSeleccionado}
+      onClose ={() => setPaqueteSeleccionado(null)}
+      >
+
+      </Formulario>
       <FooterCasino />
     </>
   );

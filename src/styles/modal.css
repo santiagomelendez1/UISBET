@@ -1,0 +1,191 @@
+.compra-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.78);
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── MODAL ── */
+.compra-modal {
+  background: #1a1a1a;
+  border: 1px solid #2e2e2e;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 380px;
+  padding: 1.5rem;
+  position: relative;
+}
+
+/* ── HEADER ── */
+.compra-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.compra-modal-title {
+  color: #c9a227;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.compra-modal-close {
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 22px;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.compra-modal-close:hover {
+  color: #c9a227;
+}
+
+/* ── RESUMEN ── */
+.compra-modal-summary {
+  background: #111;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.compra-summary-label {
+  display: block;
+  color: #888;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 3px;
+}
+
+.compra-summary-fichas {
+  color: #e8b84b;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.compra-summary-price {
+  color: #c9a227;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* ── CAMPOS ── */
+.compra-field {
+  margin-bottom: 1rem;
+}
+
+.compra-field label {
+  display: block;
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.compra-field input,
+.compra-field select {
+  width: 100%;
+  background: #111;
+  border: 1px solid #2e2e2e;
+  border-radius: 6px;
+  padding: 8px 10px;
+  color: #eee;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.compra-field input:focus,
+.compra-field select:focus {
+  border-color: #c9a227;
+}
+
+.compra-field select option {
+  background: #1a1a1a;
+  color: #eee;
+}
+
+/* ── ROW ── */
+.compra-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* ── ERRORES ── */
+.compra-input-error {
+  border-color: #c0392b !important;
+}
+
+.compra-error-msg {
+  display: block;
+  font-size: 11px;
+  color: #e74c3c;
+  margin-top: 4px;
+}
+
+/* ── BOTÓN ── */
+.compra-btn-confirm {
+  width: 100%;
+  background: #c9a227;
+  border: none;
+  color: #111;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: opacity 0.2s;
+}
+
+.compra-btn-confirm:hover {
+  opacity: 0.85;
+}
+
+.compra-btn-confirm:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ── SUCCESS ── */
+.compra-modal-success {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.compra-modal-success .compra-success-icon {
+  font-size: 42px;
+  margin-bottom: 0.75rem;
+}
+
+.compra-modal-success h3 {
+  color: #c9a227;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.compra-modal-success p {
+  color: #888;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.compra-modal-success strong {
+  color: #eee;
+}
