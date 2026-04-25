@@ -1,18 +1,45 @@
-# React + Vite
+# Nombre del Proyecto
+Aplicación web de casino donde los usuarios pueden registrarse, comprar fichas y acceder a distintos juegos.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Tecnologías usadas
+- React
+- Bootstrap
+- Node.js
+- React Router DOM
 
-Currently, two official plugins are available:
+## Instalación
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+# clonar el repositorio
+git clone https://github.com/santiagomelendez1/UISBET
 
-## React Compiler
+# ubicar la carpeta del proyecto 
+cd UISBET
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+# instalar dependencias
+npm install
+npm install react-router-dom
 
-Note: This will impact Vite dev & build performances.
+# instalar bootstrap
+npm install bootstrap
 
-## Expanding the ESLint configuration
+# correr el proyecto
+npm run dev
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# acceso
+http://localhost:5173
+
+## Funcionalidades
+- Login de usuarios
+- Compra de fichas
+- Juegos de casino
+- Carrusel interactivo 
+- Visualización  de paquetes de fichas
+- Navegación entre paginas sin recarga
+- Conexión con redes sociales
+- Manejo de rutas privadas vinculado al Login
+
+## Autores
+-David Santiago Meléndez
+-Diego Laguado
+-Ivan Herrera
+-Santiago Fonseca
