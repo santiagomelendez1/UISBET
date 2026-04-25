@@ -20,13 +20,13 @@ function Juegos() {
   const games = [
     {
       title: 'Baccarat',
-      description: 'Estructura base del juego, reglas y espacio para lógica futura.',
+      description: '¿quién sacará el número mayor?',
       icon: '🃏',
       path: '/baccarat'
     },
     {
       title: 'Ruleta',
-      description: 'Sección preparada para tablero, apuestas y animación del giro.',
+      description: 'Prueba tu suerte y haz tu apuesta ganadora',
       icon: '🎡',
       path: '/ruleta'
     },
