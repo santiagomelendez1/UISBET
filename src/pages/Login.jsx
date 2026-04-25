@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Card, Form, Button, InputGroup } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../components/AuthContext';
 
 /**
  * Formulario de inicio de sesión. Su función es permitir que el usuario ingrese
- * su correo electrónico y contraseña para autenticarse.
+ * sus credenciales para autenticarse y acceder a las rutas privadas.
  */
 function Login() {
   /**
@@ -12,6 +14,34 @@ function Login() {
    * false: ocultar
    */
   const [showPassword, setShowPassword] = useState(false);
+
+  /**
+   * Obtiene la función para cambiar el estado global del login.
+   */
+  const { setIsLoggedIn } = useContext(AuthContext);
+
+  /**
+   * Hook para navegar a otra ruta después del login.
+   */
+  const navigate = useNavigate();
+
+  /**
+   * Si las credenciales son correctas, activa el login y redirige.
+   */
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    /* Usuario de prueba para la primera fase. */
+    if (email === 'admin@gmail.com' && password === '1234') {
+      setIsLoggedIn(true);
+      navigate('/juegos');
+    } else {
+      alert('Credenciales incorrectas');
+    }
+  };
 
   return (
     <>
@@ -28,14 +58,14 @@ function Login() {
             </h2>
 
             {/* Form agrupa todos los campos del formulario. */}
-            <Form>
+            <Form onSubmit={handleSubmit}>
               
-              {/* Campo de correo electrónico. */}
-              <Form.Group className="mb-3">
-                <Form.Label>Correo Electrónico</Form.Label>
-
-                {/* Input de tipo email con texto guía. */}
-                <Form.Control type="email" placeholder="Ingresa tu email" />
+              {/* Campo de correo electrónico. */} 
+              <Form.Group className="mb-3"> 
+                <Form.Label>Correo Electrónico</Form.Label> 
+                
+                {/* Input de tipo email con texto guía. */} 
+                <Form.Control name="email" type="email" placeholder="Ingresa tu email" /> 
               </Form.Group>
 
               {/* Campo de contraseña. */}
@@ -47,6 +77,7 @@ function Login() {
                   
                   {/* Si showPassword es true se muestra el texto; si no, se oculta. */}
                   <Form.Control
+                    name="password"
                     type={showPassword ? 'text' : 'password'}
                     placeholder="Ingresa tu contraseña"
                   />
@@ -55,6 +86,7 @@ function Login() {
                     
                     {/* Botón para alternar la visibilidad de la contraseña. */}
                     <Button
+                      type="button"
                       variant="link"
                       onClick={() => setShowPassword(!showPassword)}
                       style={{ padding: 0, border: 'none', background: 'none' }}
