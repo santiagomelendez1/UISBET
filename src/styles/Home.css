@@ -1,5 +1,4 @@
-/* ESTILOS GENERALES DEL HOME  */
-
+/* Variables globales de colores del proyecto. */
 :root {
   --black-main: #0b0b0b;
   --black-soft: #151515;
@@ -10,55 +9,67 @@
   --gray-soft: #bcbcbc;
 }
 
+/* Desplazamiento suave al navegar por anclas internas. */
 html {
   scroll-behavior: smooth;
 }
 
+/* Estilo general del cuerpo de la página. */
 body {
   background-color: var(--black-main);
   color: var(--white-soft);
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Evita que el contenido quede tapado por el navbar fijo al hacer scroll. */
 section,
 header {
   scroll-margin-top: 90px;
 }
 
-/* NAVBAR */
+/*                   NAVBAR                 */
+
+/* Fondo, transparencia y borde inferior del navbar principal. */
 .uisbet-navbar {
   background: rgba(11, 11, 11, 0.95);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(212, 175, 55, 0.2);
 }
 
+/* Estilo del texto de la marca UISBET.COM. con espaciado entre letras*/
 .brand-text {
   font-weight: 700;
   letter-spacing: 1px;
   color: var(--gold-main) !important;
 }
 
+/* Color de los enlaces del navbar. */
 .navbar .nav-link,
 .navbar .dropdown-toggle {
   color: var(--white-soft) !important;
 }
 
+/* Cambia el color de los enlaces al pasar el mouse. */
 .navbar .nav-link:hover,
 .navbar .dropdown-toggle:hover {
   color: var(--gold-main) !important;
 }
 
+/* Fondo y borde del menú desplegable oscuro. */
 .dropdown-menu-dark {
   background-color: var(--black-card);
   border: 1px solid rgba(212, 175, 55, 0.2);
 }
 
-/* HERO */
+/*                 HERO / HOME            */
+
+/* Sección principal del Home con espacio superior por el navbar fijo. */
 .hero-section {
   padding: 110px 0 50px;
   background: linear-gradient(180deg, #111111 0%, #0b0b0b 100%);
 }
 
+/* Estilo base compartido por cards y bloques principales del sitio. */
 .hero-carousel,
 .side-card,
 .feature-card,
@@ -73,6 +84,7 @@ header {
   color: var(--white-soft);
 }
 
+/* Panel general de cada diapositiva del carrusel. */
 .carousel-panel {
   min-height: 430px;
   display: flex;
@@ -80,41 +92,48 @@ header {
   padding: 40px;
   background-size: cover;
   background-position: center;
-  justify-content: center; /* centra verticalmente */
-  align-items: center;     /* centra horizontalmente */
-  text-align: center; 
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
+/* Fondo de la primera diapositiva del carrusel. */
 .panel-one {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)),
     linear-gradient(120deg, #111111, #3a2b05);
 }
 
+/* Fondo de la segunda diapositiva del carrusel. */
 .panel-two {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)),
     linear-gradient(120deg, #111111, #6b5312);
 }
 
+/* Fondo de la tercera diapositiva del carrusel. */
 .panel-three {
   background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65)),
     linear-gradient(120deg, #000000, #463409);
 }
 
+/* Ancho máximo del contenido textual dentro del carrusel. */
 .carousel-overlay {
   max-width: 520px;
 }
 
+/* Tamaño y grosor de títulos del carrusel. */
 .carousel-overlay h1,
 .carousel-overlay h2 {
   font-size: clamp(2rem, 4vw, 3.3rem);
   font-weight: 700;
 }
 
+/* Estilo de los párrafos del carrusel. */
 .carousel-overlay p {
   font-size: 1rem;
   color: #ededed;
 }
 
+/* Etiqueta pequeña superior del carrusel. */
 .small-label {
   display: inline-block;
   padding: 6px 12px;
@@ -126,15 +145,18 @@ header {
   font-size: 0.9rem;
 }
 
+/* Texto secundario claro usado en tarjetas. */
 .text-muted-light {
   color: var(--gray-soft);
 }
 
+/* Altura mínima de cards laterales del Home. */
 .quick-card,
 .side-card {
   min-height: 205px;
 }
 
+/* Animación suave de botones en cards y accesos rápidos. */
 .quick-links .btn,
 .game-card .btn,
 .chip-card .btn,
@@ -142,6 +164,7 @@ header {
   transition: transform 0.25s ease;
 }
 
+/* Eleva levemente los botones al pasar el mouse. */
 .quick-links .btn:hover,
 .game-card .btn:hover,
 .chip-card .btn:hover,
@@ -149,11 +172,13 @@ header {
   transform: translateY(-2px);
 }
 
+/* Estilo de números destacados como fichas o estadísticas. */
 .gold-number {
   color: var(--gold-main);
   font-weight: 700;
 }
 
+/* Caja desplegable del saldo con fondo y borde. */
 .collapse-card {
   padding: 15px;
   border-radius: 12px;
@@ -161,15 +186,19 @@ header {
   border: 1px solid rgba(212, 175, 55, 0.15);
 }
 
-/* SECCIONES */
+/*               SECCIONES GENERALES              */
+
+/* Fondo oscuro para secciones como Empresa o Fichas. */
 .section-dark {
   background-color: var(--black-main);
 }
 
+/* Fondo degradado para secciones destacadas como Juegos o Saldo. */
 .section-gold {
   background: linear-gradient(180deg, #121212 0%, #17130a 100%);
 }
 
+/* Estilo del subtítulo superior de cada sección. */
 .section-title span {
   color: var(--gold-main);
   text-transform: uppercase;
@@ -177,17 +206,20 @@ header {
   letter-spacing: 1px;
 }
 
+/* Estilo del título principal de cada sección. */
 .section-title h2 {
   font-size: clamp(1.9rem, 3vw, 2.7rem);
   font-weight: 700;
   margin-top: 8px;
 }
 
+/* Estilo del párrafo descriptivo debajo del título. */
 .section-title p {
   max-width: 700px;
   color: #d8d8d8;
 }
 
+/* Animación suave para cards y cajas estadísticas. */
 .feature-card,
 .game-card,
 .chip-card,
@@ -196,6 +228,7 @@ header {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+/* Efecto visual al pasar el mouse sobre las cards. */
 .feature-card:hover,
 .game-card:hover,
 .chip-card:hover,
@@ -205,12 +238,14 @@ header {
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
 }
 
+/* Tamaño de iconos en cards de Home y Juegos. */
 .feature-icon,
 .game-icon {
   font-size: 2.3rem;
   margin-bottom: 12px;
 }
 
+/* Color dorado suave para títulos de cards y footer. */
 .game-card .card-title,
 .chip-card h4,
 .team-card h5,
@@ -220,10 +255,12 @@ header {
   color: var(--gold-soft);
 }
 
+/* Fondo especial de la card de saldo. */
 .saldo-card {
   background: linear-gradient(135deg, #101010, #231b0c);
 }
 
+/* Caja individual de estadísticas dentro del saldo. */
 .stat-box {
   background-color: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(212, 175, 55, 0.15);
@@ -231,16 +268,19 @@ header {
   padding: 20px 10px;
 }
 
+/* Número principal de cada estadística. */
 .stat-box h3 {
   color: var(--gold-main);
   font-weight: 700;
 }
 
+/* Texto descriptivo de cada estadística. */
 .stat-box p {
   margin-bottom: 0;
   color: var(--gray-soft);
 }
 
+/* Primera letra grande decorativa del texto. */
 .dropcap-text::first-letter {
   font-size: 3rem;
   font-weight: 700;
@@ -249,22 +289,30 @@ header {
   padding-right: 0px;
 }
 
+/*               ACORDEÓN / FAQ             */
+
+/* Estilo general de cada item del acordeón. */
 .faq-accordion .accordion-item {
   background-color: var(--black-card);
   border: 1px solid rgba(212, 175, 55, 0.15);
   color: var(--white-soft);
 }
 
+/* Estilo del botón del acordeón en estado normal. */
 .faq-accordion .accordion-button {
   background-color: #181818;
   color: var(--white-soft);
 }
 
+/* Estilo del botón del acordeón cuando está abierto. */
 .faq-accordion .accordion-button:not(.collapsed) {
   background-color: #231b0c;
   color: var(--gold-soft);
 }
 
+/*             BLOQUES AUXILIARES           */
+
+/* Caja de marcador o espacio reservado para video. */
 .video-placeholder {
   min-height: 200px;
   display: flex;
@@ -278,12 +326,14 @@ header {
   color: var(--gray-soft);
 }
 
+/* Estilo de inputs dentro de la card de contacto. */
 .contact-card .form-control {
   background-color: #101010;
   border: 1px solid rgba(212, 175, 55, 0.18);
   color: var(--white-soft);
 }
 
+/* Estilo del input de contacto cuando está enfocado. */
 .contact-card .form-control:focus {
   background-color: #101010;
   color: var(--white-soft);
@@ -291,6 +341,7 @@ header {
   box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.15);
 }
 
+/* Avatar circular para integrantes o perfiles. */
 .team-avatar {
   width: 65px;
   height: 65px;
@@ -304,6 +355,7 @@ header {
   background: linear-gradient(135deg, var(--gold-main), var(--gold-soft));
 }
 
+/* Tamaño y recorte de la imagen de un integrante. */
 .member-photo {
   width: 180px;
   height: 180px;
@@ -311,55 +363,70 @@ header {
   border: 4px solid rgba(212, 175, 55, 0.4);
 }
 
-/* FOOTER */
+/*              FOOTER           */
+
+/* Fondo, padding y borde superior del footer. */
 .footer-section {
   padding: 35px 0;
   background-color: #080808;
   border-top: 1px solid rgba(212, 175, 55, 0.2);
 }
 
+/* Quita viñetas y espacios de las listas del footer. */
 .footer-links {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+/* Espacio entre enlaces del footer. */
 .footer-links li {
   margin-bottom: 8px;
 }
 
+/* Estilo base de los enlaces del footer. */
 .footer-links a {
   color: var(--white-soft);
   text-decoration: none;
 }
 
+/* Cambia el color del enlace del footer al pasar el mouse. */
 .footer-links a:hover {
   color: var(--gold-main);
 }
 
-/* RESPONSIVE */
+/*             RESPONSIVE              */
+
+
+/* Ajustes para pantallas medianas y tablets. */
 @media (max-width: 991px) {
+  /* Reduce el espacio superior del Home. */
   .hero-section {
     padding-top: 100px;
   }
 
+  /* Reduce altura y padding del carrusel. */
   .carousel-panel {
     min-height: 360px;
     padding: 30px;
   }
 }
 
+/* Ajustes para celulares. */
 @media (max-width: 767px) {
+  /* Hace más compacto el carrusel en móviles. */
   .carousel-panel {
     min-height: 320px;
     padding: 24px;
   }
 
+  /* Reduce el tamaño de títulos del carrusel en móviles. */
   .carousel-overlay h1,
   .carousel-overlay h2 {
     font-size: 2rem;
   }
 
+  /* Reduce el tamaño del título principal de sección en móviles. */
   .section-title h2 {
     font-size: 1.8rem;
   }
