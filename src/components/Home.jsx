@@ -39,9 +39,9 @@ function Home() {
    */
   const saldoPopover = (
     <Popover id="popover-saldo">
-      <Popover.Header as="h3">Saldo de demostración</Popover.Header>
+      <Popover.Header as="h3">Saldo actual</Popover.Header>
       <Popover.Body>
-        Aqui encuentras el saldo disponible que posee.
+        Aqui encuentras el saldo disponible que posees.
       </Popover.Body>
     </Popover>
   );
@@ -65,8 +65,8 @@ function Home() {
                       <span className="small-label">Casino virtual</span>
                       <h1>Bienvenido a UISBET.COM</h1>
                       <p>
-                        Explora nuestro casino virtual con estilo moderno, diseño responsive y
-                        espacio listo para futuras funcionalidades.
+                        Explora nuestro casino virtual con estilo moderno donde podrás
+                        divertirte y ganar en juegos como Baccarat y la ruleta.
                       </p>
 
                       {/* Botones de navegación hacia otras secciones del sitio */}
@@ -89,8 +89,7 @@ function Home() {
                       <span className="small-label">Compra rápida</span>
                       <h2>Gestiona tus fichas</h2>
                       <p>
-                        La sección de compras ya está preparada para mostrar paquetes, saldo y
-                        futuras actualizaciones en tiempo real.
+                        Encuentra nuestros distintos paquetes de compra de fichas para seguir jugando.
                       </p>
                       <Button as={Link} to="/fichas" variant="warning">
                         Ir a fichas
@@ -104,10 +103,10 @@ function Home() {
                   <div className="carousel-panel panel-three">
                     <div className="carousel-overlay">
                       <span className="small-label">Información del proyecto</span>
-                      <h2>Diseño claro y explicable</h2>
+                      <h2>Apuesta y gana</h2>
                       <p>
-                        Esta versión inicial fue hecha con Bootstrap y React para que sea fácil de
-                        entender y presentar en la exposición.
+                        El proyecto UISBET.COM nace de la idea de 4 programadores quienes 
+                        apostaron por un 5.0 en WEB.
                       </p>
                       <Button as={Link} to="/contacto" variant="outline-light">
                         Contacto
@@ -124,7 +123,7 @@ function Home() {
                 <Card.Body>
                   {/* Encabezado de la tarjeta con botón de información */}
                   <div className="d-flex justify-content-between align-items-center flex-wrap gap-2">
-                    <h3 className="mb-0">Saldo demo</h3>
+                    <h3 className="mb-0">Saldo actual</h3>
 
                     {/* Popover que explica el propósito del saldo visual */}
                     <OverlayTrigger
@@ -141,8 +140,7 @@ function Home() {
                   {/* Valor visual del saldo del usuario */}
                   <h2 className="gold-number mt-3">1.250 fichas</h2>
                   <p className="text-muted-light">
-                    Valor visual para mostrar cómo quedará el panel del usuario cuando exista login
-                    real.
+                    Podrás multiplicar tus fichas en nuestros juegos disponibles.
                   </p>
 
                   {/* Botón que abre o cierra los detalles del saldo */}
@@ -160,7 +158,6 @@ function Home() {
                   <Collapse in={openInfo}>
                     <div id="collapse-saldo" className="collapse-card mt-3">
                       <ul className="mb-0">
-                        <li>Saldo inicial de demostración</li>
                         <li>Espacio para historial de compras</li>
                         <li>Espacio para resultados de partidas</li>
                       </ul>
@@ -180,12 +177,11 @@ function Home() {
             {/* Tarjeta 1 */}
             <Col md={4}>
               <Card className="feature-card h-100 text-center">
-                <Card.Body>
+                <Card.Body className="d-flex flex-column justify-content-center align-items-center text-center">
                   <div className="feature-icon">🎯</div>
                   <h4>Navegación clara</h4>
                   <p>
-                    Barra fija, menú ordenado y acceso rápido a las secciones más importantes del
-                    sitio.
+                    Sitio Web ordenado e intuitivo para acceder a las secciones de tu interés.
                   </p>
                 </Card.Body>
               </Card>
@@ -194,12 +190,11 @@ function Home() {
             {/* Tarjeta 2 */}
             <Col md={4}>
               <Card className="feature-card h-100 text-center">
-                <Card.Body>
-                  <div className="feature-icon">💳</div>
+                <Card.Body className="d-flex flex-column justify-content-center align-items-center text-center">
+                  <div className="feature-icon">💸</div>
                   <h4>Compra de fichas</h4>
                   <p>
-                    Estructura visual lista para conectar más adelante con validaciones y operaciones
-                    del sistema.
+                    Adquiere tus fichas fácil y rápido para empezar a ganar.
                   </p>
                 </Card.Body>
               </Card>
@@ -208,12 +203,11 @@ function Home() {
             {/* Tarjeta 3 */}
             <Col md={4}>
               <Card className="feature-card h-100 text-center">
-                <Card.Body>
+                <Card.Body className="d-flex flex-column justify-content-center align-items-center text-center">
                   <div className="feature-icon">📱</div>
                   <h4>Diseño responsive</h4>
                   <p>
-                    Distribución adaptable para computador, tablet y celular usando la grilla de
-                    Bootstrap.
+                    Disfruta el casino virtual desde computador, tablet y celular.
                   </p>
                 </Card.Body>
               </Card>
