@@ -38,7 +38,7 @@ http://localhost:5173
 - Conexión con redes sociales
 - Manejo de rutas privadas vinculado al Login
 
-## Autor
+## Autores
 -David Santiago Meléndez
 -Diego Laguado
 -Ivan Herrera
