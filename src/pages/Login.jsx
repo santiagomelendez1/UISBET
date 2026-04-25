@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Card, Form, Button, InputGroup } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../components/AuthContext';
 
 /**
@@ -101,6 +101,11 @@ function Login() {
               {/* Botón para enviar el formulario ocupando todo el ancho. */}
               <Button variant="warning" type="submit" className="w-100">
                 Iniciar Sesión
+              </Button>
+
+              {/* Botón para volver a la página de inicio. */}
+              <Button as={Link} to="/" variant="dark" className="w-100 mt-3">
+                Volver al inicio
               </Button>
             </Form>
           </Card.Body>

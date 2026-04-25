@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Form, Button, InputGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 /**
  * Formulario de registro. Su función es permitir que el usuario ingrese
@@ -102,6 +103,11 @@ function Registro() {
               {/* Botón para enviar el formulario ocupando todo el ancho. */}
               <Button variant="warning" type="submit" className="w-100">
                 Registrarse
+              </Button>
+
+              {/* Botón para volver a la página de inicio. */}
+              <Button as={Link} to="/" variant="dark" className="w-100 mt-3">
+                Volver al inicio
               </Button>
             </Form>
           </Card.Body>

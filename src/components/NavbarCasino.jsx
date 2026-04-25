@@ -1,13 +1,27 @@
 import { Container, Nav, Navbar, Button } from 'react-bootstrap';
 
 // Importa Link de react-router-dom para navegar entre rutas sin recargar toda la página.
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from './AuthContext';
 
-/**
- * Este componente representa la barra de navegación principal del sitio UISBET.COM.
- */
+// Este componente representa la barra de navegación principal del sitio UISBET.COM.
+
 
 function NavbarCasino() {
+
+  // Obtiene el estado global del login.
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+
+  // Hook para navegar a otra ruta después del logout.
+  const navigate = useNavigate();
+
+  // Cierra la sesión del usuario y lo redirige al login.
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    navigate('/login');
+  };
+
   return (
     /**
      * Parámetros usados:
@@ -58,19 +72,27 @@ function NavbarCasino() {
             <Nav.Link as={Link} to="/contacto">Contacto</Nav.Link>
           </Nav>
 
-          {/* Contenedor para los botones de acceso del usuario con separación. */}
-          <div className="d-flex gap-2">
-            
-            {/* Botón de inicio de sesión. */}
-            <Button as={Link} to="/login" variant="outline-warning">
-              Login
-            </Button>
+          {/* Muestra Login y Registro si no ha iniciado sesión. */}
+          {!isLoggedIn && (
+            <div className="d-flex gap-2">
+              <Button as={Link} to="/login" variant="outline-warning">
+                Login
+              </Button>
 
-            {/* Botón de registro. */}
-            <Button as={Link} to="/registro" variant="warning">
-              Registro
-            </Button>
-          </div>
+              <Button as={Link} to="/registro" variant="warning">
+                Registro
+              </Button>
+            </div>
+          )}
+
+          {/* Muestra Logout si ya inició sesión. */}
+          {isLoggedIn && (
+            <div className="d-flex gap-2">
+              <Button variant="outline-warning" onClick={handleLogout}>
+                Logout
+              </Button>
+            </div>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>

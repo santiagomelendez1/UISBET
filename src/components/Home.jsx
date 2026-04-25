@@ -39,7 +39,7 @@ function Home() {
    */
   const saldoPopover = (
     <Popover id="popover-saldo">
-      <Popover.Header as="h3">Saldo actual</Popover.Header>
+      <Popover.Header as="h3" style={{ color: 'black' }}>Saldo actual</Popover.Header>
       <Popover.Body>
         Aqui encuentras el saldo disponible que posees.
       </Popover.Body>
