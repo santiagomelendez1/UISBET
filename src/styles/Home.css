@@ -296,6 +296,8 @@ header {
 
 .dropcap-text{
   text-align: justify !important;
+  margin-right: 50px;
+  margin-left: 50px;
 }
 
 

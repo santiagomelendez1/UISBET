@@ -45,9 +45,6 @@ function Empresa() {
           Promovemos el juego responsable y recomendamos a nuestros usuarios hacer uso consciente de la plataforma.
         </p>
 
-          <p>
-            
-          </p>
         </Container>
       </section>
 
