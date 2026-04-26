@@ -28,6 +28,11 @@ npm run dev
 # acceso
 http://localhost:5173
 
+# accesso a las funcionalidades (Compra de fichas, saldo y juegos)
+
+Usuario: admin@gmail.com
+Contraseña: 1234
+
 ## Funcionalidades
 - Login de usuarios
 - Compra de fichas
