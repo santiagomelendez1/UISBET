@@ -107,6 +107,13 @@ function Login() {
               <Button as={Link} to="/" variant="dark" className="w-100 mt-3">
                 Volver al inicio
               </Button>
+
+              {/* Enlace al formulario de registro. */}
+              <p className="text-start mt-3 mb-0">
+                <Link to="/registro" style={{ textDecoration: 'underline', color: 'var(--gold-main)' }}>
+                  Regístrate aquí
+                </Link>
+              </p>
             </Form>
           </Card.Body>
         </Card>
