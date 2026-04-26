@@ -38,13 +38,15 @@ function Empresa() {
           </div>
 
           <p className="dropcap-text">
-            UISBET.COM es una propuesta académica de casino virtual diseñada para aplicar conceptos
-            de programación web, diseño responsive e interfaces modernas.
-          </p>
+          <span className='primeraL'>S</span>omos una plataforma de entretenimiento online enfocada en ofrecer una experiencia de casino moderna, intuitiva y accesible para todos los usuarios.
+          Nuestra misión es brindar una experiencia de juego dinámica y responsable, combinando tecnología y diseño para garantizar una navegación fluida y atractiva.
+          Ofrecemos diferentes juegos de casino, así como la posibilidad de adquirir fichas de forma sencilla dentro de la plataforma.
+          La seguridad de nuestros usuarios es una prioridad. Implementamos medidas para proteger la información personal y garantizar una experiencia confiable.
+          Promovemos el juego responsable y recomendamos a nuestros usuarios hacer uso consciente de la plataforma.
+        </p>
 
           <p>
-            La idea del proyecto es integrar registro, login, compra de fichas, juegos y un panel
-            personalizado.
+            
           </p>
         </Container>
       </section>

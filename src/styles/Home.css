@@ -281,13 +281,23 @@ header {
 }
 
 /* Primera letra grande decorativa del texto. */
-.dropcap-text::first-letter {
+
+.primeraL {
   font-size: 3rem;
   font-weight: 700;
   color: var(--gold-main);
   line-height: 1;
   padding-right: 0px;
+
 }
+
+
+
+
+.dropcap-text{
+  text-align: justify !important;
+}
+
 
 /*               ACORDEÓN / FAQ             */
 
