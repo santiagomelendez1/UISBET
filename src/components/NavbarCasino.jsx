@@ -3,7 +3,7 @@ import { Container, Nav, Navbar, Button } from 'react-bootstrap';
 // Importa Link de react-router-dom para navegar entre rutas sin recargar toda la página.
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
-import { AuthContext } from './AuthContext';
+import { AuthContext } from '../context/AuthContext';
 
 // Este componente representa la barra de navegación principal del sitio UISBET.COM.
 
