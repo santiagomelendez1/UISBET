@@ -1,5 +1,5 @@
-// Usuarios registrados (simulando una BD en memoria)
-const usuarios = [];
+// ── Array en memoria que guarda los usuarios registrados ──
+const usuarios = []; // ← debe estar AQUÍ
 
 // Middleware que verifica si el usuario existe antes de hacer login
 const verificarUsuario = (req, res, next) => {
@@ -8,13 +8,13 @@ const verificarUsuario = (req, res, next) => {
   const usuario = usuarios.find((u) => u.email === email);
 
   if (!usuario) {
-    res.send("Usuario no autenticado");
+    res.status(404).json({ message: "Usuario no encontrado" });
   } else if (usuario.password !== password) {
-    res.send("Contraseña incorrecta");
+    res.status(401).json({ message: "Contraseña incorrecta" });
   } else {
-    req.usuarioAutenticado = usuario; // lo pasamos a la siguiente función
+    req.usuarioAutenticado = usuario;
     next();
   }
 };
 
-module.exports = { usuarios, verificarUsuario };
+module.exports = { usuarios, verificarUsuario }; // ← exporta ambos

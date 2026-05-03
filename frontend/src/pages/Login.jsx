@@ -37,7 +37,7 @@ function Login() {
     // se hace una validacion "try / catch"para asegurarse de que la conexion no falle
     try {
       // Enviar datos al backend (ajusta la URL según tu puerto de Express)
-      const response = await fetch("http://localhost:5000/api/login", {
+      const response = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST", // Método POST para enviar datos
         headers: {
           // le decimos al backend que el contenido de la informacion es un JSON
