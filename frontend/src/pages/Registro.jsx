@@ -35,7 +35,7 @@ function Registro() {
     // Enviar datos al backend (ajusta la URL según tu puerto de Express)
     try {
       // Enviar datos al backend (ajusta la URL según el puerto de Express)
-      const response = await fetch("http://localhost:5000/api/registro", {
+      const response = await fetch("http://localhost:5000/api/auth/register", {
         method: "POST", // Método POST para enviar datos
         headers: {
           // le decimos al backend que el contenido de la informacion es un JSON
