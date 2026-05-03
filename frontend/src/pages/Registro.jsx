@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, Form, Button, InputGroup } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 /**
  * Formulario de registro. Su función es permitir que el usuario ingrese
@@ -82,7 +82,6 @@ function Registro() {
 
             {/* Form agrupa todos los campos del formulario. */}
             <Form onSubmit={handleSubmit}>
-              // Agregamos el onSubmit para manejar el envío del formulario
               {/* Campo para ingresar el nombre del usuario. */}
               <Form.Group className="mb-3">
                 <Form.Label>Nombre</Form.Label>
