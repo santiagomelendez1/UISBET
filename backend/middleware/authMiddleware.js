@@ -1,5 +1,5 @@
 // ── Array en memoria que guarda los usuarios registrados ──
-const usuarios = []; // ← debe estar AQUÍ
+const usuarios = []; //
 
 // Middleware que verifica si el usuario existe antes de hacer login
 const verificarUsuario = (req, res, next) => {

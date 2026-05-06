@@ -32,9 +32,9 @@ function Registro() {
       return;
     }
 
-    // Enviar datos al backend (ajusta la URL según tu puerto de Express)
+    // Enviar datos al backend
     try {
-      // Enviar datos al backend (ajusta la URL según el puerto de Express)
+      // Enviar datos al backend (http://localhost:5000/api/auth/register) usando el método POST
       const response = await fetch("http://localhost:5000/api/auth/register", {
         method: "POST", // Método POST para enviar datos
         headers: {
@@ -64,15 +64,14 @@ function Registro() {
 
   return (
     <>
-      {/* Contenedor principal del formulario centrado y con margen superior. */}
+      {/* Contenedor principal del formulario. */}
       <div className="container mt-5 d-flex justify-content-center">
-        {/* Card del formulario con padding interno y ancho adaptable. */}
         <Card
           className="form-card p-4"
           style={{ maxWidth: "400px", width: "100%" }}
         >
           <Card.Body>
-            {/* Título principal del formulario centrado y con margen inferior. */}
+            {/* Título principal del formulario centrado. */}
             <h2
               className="text-center mb-4"
               style={{ color: "var(--gold-main)" }}
