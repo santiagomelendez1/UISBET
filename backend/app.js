@@ -9,7 +9,7 @@ const PORT = 5000;
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(express.json());
 
-// Middleware logger (igual que tu 01_middlewares.js)
+// Middleware logger
 app.use((req, res, next) => {
   console.log(
     `mensaje desde el middleware: ruta ${req.url} método: ${req.method}`,

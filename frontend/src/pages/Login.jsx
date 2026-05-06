@@ -45,7 +45,7 @@ function Login() {
         },
         body: JSON.stringify({ email, password }), // convierte el email y password a formato JSON para enviarlo al backend
       });
-      // cunado el servido responda, se convierte la respuesta a formato JSON para poder leer el mensaje que envia el backend
+      // cuando el servido responda, se convierte la respuesta a formato JSON para poder leer el mensaje que envia el backend
       const data = await response.json();
 
       if (response.ok) {
