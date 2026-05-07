@@ -20,11 +20,12 @@ router.post("/register", (req, res) => {
   //--------------------------------------------------------------------------------
 });
 
-// ── Login ─────────────────────────────────────────
+//------>> 7.SEPTIMO(login): ocurre cuanod la validacion de usuario es correcta---
 router.post("/login", verificarUsuario, (req, res) => {
+  // Si el middleware verifica que el usuario existe y la contraseña es correcta, llegamos aquí
   res
     .status(200)
     .json({ message: `Bienvenido ${req.usuarioAutenticado.email}` });
 });
-
+//--------------------------------------------------------------------------------
 module.exports = router;
