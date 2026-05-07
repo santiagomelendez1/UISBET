@@ -28,12 +28,15 @@ function Login() {
   /**
    * Si las credenciales son correctas, activa el login y redirige.
    */
-  //---------------------MOdificacion, conexion backend-------------------------
+  //----> 2. Segundo( Captura de valores del formulario )----------------------)
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Obtiene los valores de email y contraseña del formulario.
     const email = e.target.email.value;
     const password = e.target.password.value;
+    //------------------------------------------------------------------------
+
+    //----> 3. Tercero( Validación de credenciales y conexión con el backend )----------------------
     // se hace una validacion "try / catch"para asegurarse de que la conexion no falle
     try {
       // Enviar datos al backend
@@ -45,19 +48,22 @@ function Login() {
         },
         body: JSON.stringify({ email, password }), // convierte el email y password a formato JSON para enviarlo al backend
       });
+      //------------------------------------------------------------------------
+
+      //---->> 8. OCTAVO(frontend recibe la respuesta del backend)----------------
       // cuando el servido responda, se convierte la respuesta a formato JSON para poder leer el mensaje que envia el backend
       const data = await response.json();
 
       if (response.ok) {
         //Si el login es exitoso en el backend
         setIsLoggedIn(true);
-        // Opcional: Guardar token si usas JWT más adelante
-        // localStorage.setItem('token', data.token);
         navigate("/juegos"); // Redirige a la página de juegos después del login exitoso
       } else {
         // 3. Si el backend dice que las credenciales no coinciden
         alert(data.message || "Credenciales incorrectas");
       }
+      //--------------------------------------------------------------------------------
+
       //Si hay un error en la conexión o en el proceso de login
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
