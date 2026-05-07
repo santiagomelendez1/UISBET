@@ -16,6 +16,7 @@ function Registro() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate(); // Hook para navegar a otra ruta después del registro.
 
+  //--------------------->> 2. SEGUNDO(Capturar los datos)-------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,16 +26,19 @@ function Registro() {
     const email = e.target.correoElectronico.value;
     const password = e.target.contraseña.value;
     const confirmPassword = e.target.confirmarContraseña.value;
+    //--------------------------------------------------------------------------
 
+    //---------->> 3. TERCERO(Validar contraseñay enviar al backend)-------------
     // Validamos que las contraseñas coincidan
     if (password !== confirmPassword) {
       alert("Las contraseñas no coinciden");
       return;
     }
+    //--------------------------------------------------------------------------
 
     // Enviar datos al backend
     try {
-      // Enviar datos al backend (http://localhost:5000/api/auth/register) usando el método POST
+      //---->> 4. CUARTO(Conectar con el backend, se usa Fetch para hacerla peticion POST)-----
       const response = await fetch("http://localhost:5000/api/auth/register", {
         method: "POST", // Método POST para enviar datos
         headers: {
@@ -44,9 +48,12 @@ function Registro() {
         // Convertimos el nombre, email y password a formato JSON para enviarlo al backend
         body: JSON.stringify({ nombre, email, password }),
       });
+      //------------------------------------------------------------------------
+
       // Cuando el servidor responda, se convierte la respuesta a formato JSON para poder leer el mensaje que envia el backend
       const data = await response.json();
 
+      // ---->> 8. OCTAVO(Verificar la respuesta del backend )----------------
       if (response.ok) {
         // Si el registro es exitoso
         alert("Registro exitoso");
@@ -55,6 +62,7 @@ function Registro() {
         // Si el backend dice que el usuario ya existe o hay otro error
         alert(data.message || "Error al registrar usuario");
       }
+      //--------------------------------------------------------------------------------
     } catch (error) {
       // Si hay un error en la conexión o en el proceso de registro
       console.error("Error al registrar usuario:", error);

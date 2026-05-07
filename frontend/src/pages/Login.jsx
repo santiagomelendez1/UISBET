@@ -36,7 +36,7 @@ function Login() {
     const password = e.target.password.value;
     // se hace una validacion "try / catch"para asegurarse de que la conexion no falle
     try {
-      // Enviar datos al backend (ajusta la URL según tu puerto de Express)
+      // Enviar datos al backend
       const response = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST", // Método POST para enviar datos
         headers: {

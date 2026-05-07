@@ -2,18 +2,22 @@ const express = require("express");
 const router = express.Router();
 const { usuarios, verificarUsuario } = require("../middleware/authMiddleware"); // ← importa ambos
 
-// ── Registro ──────────────────────────────────────
+// ---->> 6. sexto: Rutas (todo lo que tenga /api/auth va a ser manejado por authRoutes)----------------
 router.post("/register", (req, res) => {
-  const { nombre, email, password } = req.body;
+  const { nombre, email, password } = req.body; // Extraemos el nombre, email y password del cuerpo de la solicitud
 
+  //-------------------------------------------------------------------------------
+
+  //---->> 7. SEPTIMO: Lógica de registro (verificar si el usuario ya existe )----------------
   const existe = usuarios.find((u) => u.email === email);
   if (existe) {
-    res.status(400).json({ message: "El usuario ya existe" });
+    res.status(400).json({ message: "El usuario ya existe" }); // Si el usuario ya existe, respondemos con un error
   } else {
-    usuarios.push({ nombre, email, password });
+    usuarios.push({ nombre, email, password }); // Agrega el nuevo usuario al array en memoria
     console.log("Usuarios registrados:", usuarios);
-    res.status(201).json({ message: "Usuario registrado correctamente" });
+    res.status(201).json({ message: "Usuario registrado correctamente" }); // Responde con un mensaje de éxito si el registro fue exitoso
   }
+  //--------------------------------------------------------------------------------
 });
 
 // ── Login ─────────────────────────────────────────
