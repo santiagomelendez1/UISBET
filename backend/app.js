@@ -10,9 +10,10 @@ app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 app.use(express.json());
 // --->> 4. CUARTO(LOGIN)---------------------------------------------------------
 //---->> 5 QUINTO: Middleware (antes de llegar a la ruta pasa por este middleware)-----------
+// Middleware que se ejecuta antes de cada ruta para mostrar la información de la solicitud
 app.use((req, res, next) => {
   //req (Request): Es el paquete que viene del frontend
-  //res (Response): Es lo que el servidor tiene en la mano para responder.
+  //res (Response): Es lo que el servidor usa para responder.
   //next: Es el permiso de salida, para que el usuario no vea su pantalla cargando por siempre.
   console.log(
     `mensaje desde el middleware: ruta ${req.url} método: ${req.method}`,
@@ -23,6 +24,8 @@ app.use((req, res, next) => {
 
 //---->> 6, SEXTO: Rutas (todo lo que tenga /api/auth va a ser manejado por authRoutes)----------------
 // ── Rutas ─────────────────────────────────────────
+//se identifica que cualquier ruta que comience con "/api/auth" será manejada
+// por el archivo authRoutes.js
 app.use("/api/auth", authRoutes);
 //--------------------------------------------------------------------------------
 
