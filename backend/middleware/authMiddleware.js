@@ -9,7 +9,7 @@ const verificarUsuario = (req, res, next) => {
   // Buscamos el usuario en el array de usuarios registrados
 
   const usuario = usuarios.find((u) => u.email === email);
-
+  // Si el usuario no existe, respondemos con un error
   if (!usuario) {
     // Si el usuario no existe, respondemos con un error
     res.status(404).json({ message: "Usuario no encontrado" });

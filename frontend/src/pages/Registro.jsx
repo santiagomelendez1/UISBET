@@ -39,13 +39,15 @@ function Registro() {
     // Enviar datos al backend
     try {
       //---->> 4. CUARTO(Conectar con el backend, se usa Fetch para hacerla peticion POST)-----
+      // se usa fetch para hacer la peticion al backend y se le pasa la URL del endpoint de registro,
+      // el metodo POST,se le indicar que se envia un JSON y el body con los datos convertidos a JSON
       const response = await fetch("http://localhost:5000/api/auth/register", {
-        method: "POST", // Método POST para enviar datos
+        method: "POST", // Método POST que se usa para enviar datos
         headers: {
           // le decimos al backend que el contenido de la informacion es un JSON
           "Content-Type": "application/json",
         },
-        // Convertimos el nombre, email y password a formato JSON para enviarlo al backend
+        // Convertimos el cuerpo(nombre, email y password) a formato JSON para enviarlo al backend
         body: JSON.stringify({ nombre, email, password }),
       });
       //------------------------------------------------------------------------
