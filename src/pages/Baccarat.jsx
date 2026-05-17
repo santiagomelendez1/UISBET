@@ -171,7 +171,7 @@ function Baccarat() {
       <div style={{ background: '#111', minHeight: '100vh', color: '#fff', padding: '2rem 1rem', marginTop: '90px' }}>
         <div style={{ maxWidth: 620, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 14 }}>
           <h1 style={{ textAlign: 'center', color: '#d4a017', letterSpacing: 2, marginBottom: '0.5rem', fontSize: 26, fontWeight: 700 }}>
-            🃏 BACARÁ
+            Baccarat
           </h1>
 
           {/* ── Mesa ── */}
@@ -203,7 +203,7 @@ function Baccarat() {
           </div>
 
           {/* ── Opciones de apuesta ── */}
-          <span className="b-section-label">¿A quién apostás?</span>
+          <span className="b-section-label">¿A quién apuestas?</span>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
             {betOpts.map(([t, name, odds]) => (
               <div key={t} className="b-bet-opt"

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Container, Card, Row, Col, Button, Form, Modal } from 'react-bootstrap';
+import { BASE_URL } from '../services/api';
 import NavbarCasino from '../components/NavbarCasino';
 import FooterCasino from '../components/FooterCasino';
 
@@ -38,6 +39,13 @@ function Contacto() {
                   Diego Niño
                 </Button>
               </div>
+
+              <img
+                src={`${BASE_URL}/turismo/Integrantes.png`}
+                alt="Integrantes del proyecto"
+                className="mt-4 img-fluid rounded shadow"
+                style={{ maxWidth: '500px' }}
+              />
             </Col>
 
           </Row>

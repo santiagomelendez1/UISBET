@@ -5,20 +5,22 @@ import FooterCasino from '../components/FooterCasino';
 import { AuthContext } from '../context/AuthContext';
 import { apiRequest } from '../services/api';
 
-/**
- * Panel de saldo y estadísticas.
- */
 function Saldo() {
   const { token } = useContext(AuthContext);
-  const [stats, setStats] = useState({ total_chips: 0, total_purchases: 0, paid_count: 0 });
+  const [stats, setStats] = useState({ total_chips: 0 });
+  const [balance, setBalance] = useState(0);
   const [purchases, setPurchases] = useState([]);
 
   useEffect(() => {
     const loadData = async () => {
-      const statsData = await apiRequest('/purchases/stats/mine', {}, token);
-      const purchasesData = await apiRequest('/purchases/mine', {}, token);
+      const [statsData, purchasesData, meData] = await Promise.all([
+        apiRequest('/purchases/stats/mine', {}, token),
+        apiRequest('/purchases/mine', {}, token),
+        apiRequest('/auth/me', {}, token),
+      ]);
       setStats(statsData);
       setPurchases(purchasesData);
+      setBalance(meData.balance ?? 0);
     };
 
     loadData();
@@ -34,7 +36,7 @@ function Saldo() {
             <Col lg={5}>
               <div className="section-title">
                 <span>Panel del usuario</span>
-                <h2>Saldo y estadísticas</h2>
+                <h2>SALDO</h2>
                 
               </div>
 
@@ -50,26 +52,8 @@ function Saldo() {
 
                     <Col xs={6}>
                       <div className="stat-box">
-                        <h3>{stats.total_purchases}</h3>
-                        <p>Compras realizadas</p>
-                      </div>
-                    </Col>
-
-                    <Col xs={6}>
-                      <div className="stat-box">
-                        <h3>{stats.paid_count}</h3>
-                        <p>Pagadas</p>
-                      </div>
-                    </Col>
-
-                    <Col xs={6}>
-                      <div className="stat-box">
-                        <h3>
-                          {stats.total_purchases
-                            ? Math.round((stats.paid_count / stats.total_purchases) * 100)
-                            : 0}%
-                        </h3>
-                        <p>Efectividad</p>
+                        <h3>{balance.toLocaleString('es-CO')}</h3>
+                        <p>Saldo actual</p>
                       </div>
                     </Col>
                   </Row>
