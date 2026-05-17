@@ -35,9 +35,20 @@ export async function initializeDatabase() {
       email VARCHAR(120) NOT NULL UNIQUE,
       password VARCHAR(255) NOT NULL,
       role ENUM('admin','user') DEFAULT 'user',
+      balance INT DEFAULT 0,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
   `);
+
+  /* Migración: agrega balance si la tabla ya existía sin esa columna. */
+  const [balCols] = await connection.query(
+    `SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS
+     WHERE TABLE_SCHEMA = ? AND TABLE_NAME = 'users' AND COLUMN_NAME = 'balance'`,
+    [DB_NAME]
+  );
+  if (balCols.length === 0) {
+    await connection.query('ALTER TABLE users ADD COLUMN balance INT DEFAULT 0');
+  }
 
   await connection.query(`
     CREATE TABLE IF NOT EXISTS chip_packages (

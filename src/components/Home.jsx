@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 
 import NavbarCasino from './NavbarCasino';
 import FooterCasino from './FooterCasino';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { apiRequest } from '../services/api';
 
 // Importa componentes de React-Bootstrap necesarios.
 import {
@@ -30,11 +31,26 @@ import '../styles/Home.css';
  */
 function Home() {
 
-// Estado que controla si el panel de detalles del saldo está visible o colapsado. 
   const [openInfo, setOpenInfo] = useState(false);
+  const [balance, setBalance] = useState(null);
 
-// Estado global del login. 
-  const { isLoggedIn, user } = useContext(AuthContext);
+  const { isLoggedIn, user, token } = useContext(AuthContext);
+
+  const fetchBalance = () => {
+    if (!token) return;
+    apiRequest('/auth/me', {}, token)
+      .then(data => setBalance(data.balance ?? 0))
+      .catch(() => {});
+  };
+
+  useEffect(() => {
+    fetchBalance();
+
+    // Re-fetch cuando el usuario vuelve a esta pestaña
+    const handleVisibility = () => { if (document.visibilityState === 'visible') fetchBalance(); };
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => document.removeEventListener('visibilitychange', handleVisibility);
+  }, [token]);
 
   /**
    * Popover (tarjeta emergente informativa) sobre el saldo de demostración.
@@ -149,7 +165,13 @@ function Home() {
                   </div>
 
                   {/* Valor visual del saldo del usuario */}
-                  <h2 className="gold-number mt-3">1.250 fichas</h2>
+                  <h2 className="gold-number mt-3">
+                    {!isLoggedIn
+                      ? '— fichas'
+                      : balance === null
+                        ? 'Cargando...'
+                        : `${balance.toLocaleString('es-CO')} fichas`}
+                  </h2>
                   <p className="text-muted-light">
                     Podrás multiplicar tus fichas en nuestros juegos disponibles.
                   </p>
@@ -189,7 +211,7 @@ function Home() {
             <Col md={4}>
               <Card className="feature-card h-100 text-center">
                 <Card.Body className="d-flex flex-column justify-content-center align-items-center text-center">
-                  <div className="feature-icon">🎯</div>
+                  <div className="feature-icon">◎</div>
                   <h4>Navegación clara</h4>
                   <p>
                     Sitio Web ordenado e intuitivo para acceder a las secciones de tu interés.
@@ -202,7 +224,7 @@ function Home() {
             <Col md={4}>
               <Card className="feature-card h-100 text-center">
                 <Card.Body className="d-flex flex-column justify-content-center align-items-center text-center">
-                  <div className="feature-icon">💸</div>
+                  <div className="feature-icon">$</div>
                   <h4>Compra de fichas</h4>
                   <p>
                     Adquiere tus fichas fácil y rápido para empezar a ganar.
@@ -215,7 +237,7 @@ function Home() {
             <Col md={4}>
               <Card className="feature-card h-100 text-center">
                 <Card.Body className="d-flex flex-column justify-content-center align-items-center text-center">
-                  <div className="feature-icon">📱</div>
+                  <div className="feature-icon">✆</div>
                   <h4>Diseño responsive</h4>
                   <p>
                     Disfruta el casino virtual desde computador, tablet y celular.

@@ -75,6 +75,7 @@ router.post('/login', validateEmail, async (req, res) => {
         name: user.name,
         email: user.email,
         role: user.role,
+        balance: user.balance ?? 0,
       },
     });
   } catch (error) {
@@ -86,13 +87,30 @@ router.post('/login', validateEmail, async (req, res) => {
 router.get('/me', authRequired, async (req, res) => {
   try {
     const [rows] = await pool.query(
-      'SELECT id, name, email, role, created_at FROM users WHERE id = ?',
+      'SELECT id, name, email, role, balance, created_at FROM users WHERE id = ?',
       [req.user.id]
     );
 
     return res.json(rows[0]);
   } catch (error) {
     return res.status(500).json({ message: 'Error al consultar usuario.', error: error.message });
+  }
+});
+
+/* Actualiza saldo del usuario autenticado. */
+router.patch('/balance', authRequired, async (req, res) => {
+  try {
+    const { balance } = req.body;
+
+    if (balance === undefined || balance === null || balance < 0) {
+      return res.status(400).json({ message: 'Saldo inválido.' });
+    }
+
+    await pool.query('UPDATE users SET balance = ? WHERE id = ?', [balance, req.user.id]);
+
+    return res.json({ message: 'Saldo actualizado.', balance });
+  } catch (error) {
+    return res.status(500).json({ message: 'Error al actualizar saldo.', error: error.message });
   }
 });
 

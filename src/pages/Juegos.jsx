@@ -21,14 +21,16 @@ function Juegos() {
     {
       title: 'Baccarat',
       description: '¿quién sacará el número mayor?',
-      icon: '🃏',
-      path: '/baccarat'
+      icon: '🂡',
+      path: '/baccarat',
+      videoId: 'xhYgXZ51P4M'
     },
     {
       title: 'Ruleta',
       description: 'Prueba tu suerte y haz tu apuesta ganadora',
-      icon: '🎡',
-      path: '/ruleta'
+      icon: '☘',
+      path: '/ruleta',
+      videoId: 'MMlyoS9qdvo'
     },
   ];
 
@@ -84,6 +86,20 @@ function Juegos() {
                     >
                       Jugar
                     </Button>
+
+                    {/* Video tutorial del juego */}
+                    <div className="mt-3">
+                      <p className="text-muted mb-1" style={{ fontSize: '0.85rem' }}>Tutorial</p>
+                      <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: '8px' }}>
+                        <iframe
+                          src={`https://www.youtube.com/embed/${game.videoId}`}
+                          title={`Tutorial de ${game.title}`}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                        />
+                      </div>
+                    </div>
                   </Card.Body>
                 </Card>
               </Col>

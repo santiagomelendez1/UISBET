@@ -35,7 +35,7 @@ function Saldo() {
               <div className="section-title">
                 <span>Panel del usuario</span>
                 <h2>Saldo y estadísticas</h2>
-                <p>Aquí aparece el apartado de saldo alimentado por la base de datos.</p>
+                
               </div>
 
               <Card className="saldo-card shadow-lg mt-4">
@@ -44,7 +44,7 @@ function Saldo() {
                     <Col xs={6}>
                       <div className="stat-box">
                         <h3>{stats.total_chips}</h3>
-                        <p>Fichas actuales</p>
+                        <p>Fichas compradas</p>
                       </div>
                     </Col>
 

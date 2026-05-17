@@ -1,8 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import NavbarCasino from '../components/NavbarCasino';
 import FooterCasino from '../components/FooterCasino';
+import { AuthContext } from '../context/AuthContext';
+import { apiRequest } from '../services/api';
 
 function Baccarat() {
+  const { token } = useContext(AuthContext);
+
   useEffect(() => {
     const SUITS = ['♠', '♥', '♦', '♣'];
     const RANKS = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
@@ -18,7 +22,7 @@ function Baccarat() {
     }
 
     let deck    = makeDeck();
-    let balance = 500;
+    let balance = 0;
     let bet     = 0;
     let chip    = 1;
     let betType = null;
@@ -109,6 +113,7 @@ function Baccarat() {
         const wn = winner === 'player' ? 'Jugador' : winner === 'banker' ? 'Banca' : 'Empate';
         setMsg('lose', 'Ganó ' + wn + ' (' + pf + ' vs ' + bf + '). Perdiste $' + betAmount);
       }
+      syncBalance();
       dealing = false;
     }
 
@@ -119,10 +124,24 @@ function Baccarat() {
       el.textContent = txt;
     }
 
+    function syncBalance() {
+      apiRequest('/auth/balance', {
+        method: 'PATCH',
+        body: JSON.stringify({ balance }),
+      }, token).catch(() => {});
+    }
+
     window.bSelectChip = selectChip;
     window.bSelectBet  = selectBet;
     window.bClearBet   = clearBet;
     window.bDeal       = deal;
+
+    // Carga el saldo real desde la BD
+    apiRequest('/auth/me', {}, token).then(data => {
+      balance = data.balance ?? 0;
+      const el = document.getElementById('b-balance');
+      if (el) el.textContent = '$' + balance;
+    }).catch(() => {});
 
     return () => {
       delete window.bSelectChip;
@@ -212,7 +231,7 @@ function Baccarat() {
           {/* ── Saldo ── */}
           <div className="b-balance-row">
             <span className="b-bal-lbl">Saldo</span>
-            <span id="b-balance" className="b-bal-val">$500</span>
+            <span id="b-balance" className="b-bal-val">$0</span>
           </div>
           <div className="b-balance-row" style={{ borderTop: 'none', paddingTop: 0 }}>
             <span className="b-bal-lbl">Apuesta actual</span>

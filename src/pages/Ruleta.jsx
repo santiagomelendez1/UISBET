@@ -1,8 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 import NavbarCasino from '../components/NavbarCasino';
 import FooterCasino from '../components/FooterCasino';
+import { AuthContext } from '../context/AuthContext';
+import { apiRequest } from '../services/api';
 
 function Ruleta() {
+  const { token } = useContext(AuthContext);
+
   useEffect(() => {
     // ── Constantes ──────────────────────────────────────
     const NUMBERS = [0,32,15,19,4,21,2,25,17,34,6,27,13,36,11,30,8,23,10,5,
@@ -10,7 +14,7 @@ function Ruleta() {
     const RED_NUMS = new Set([1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]);
     const SLICE    = 360 / NUMBERS.length;
 
-    let balance  = 500;
+    let balance  = 0;
     let bet      = 0;
     let chip     = 1;
     let betType  = null;
@@ -121,6 +125,7 @@ function Ruleta() {
       } else {
         setMsg('lose', 'Salió ' + num + ' (' + colorName + '). Perdiste $' + betAmount);
       }
+      syncBalance();
     }
 
     function checkWin(num, bet, type) {
@@ -144,6 +149,13 @@ function Ruleta() {
       el.textContent = txt;
     }
 
+    function syncBalance() {
+      apiRequest('/auth/balance', {
+        method: 'PATCH',
+        body: JSON.stringify({ balance }),
+      }, token).catch(() => {});
+    }
+
     // Exponer funciones al scope global para los onclick del JSX
     window.rSelectChip   = selectChip;
     window.rSelectBet    = selectBet;
@@ -151,6 +163,13 @@ function Ruleta() {
     window.rSpinRoulette = spinRoulette;
 
     buildWheel();
+
+    // Carga el saldo real desde la BD
+    apiRequest('/auth/me', {}, token).then(data => {
+      balance = data.balance ?? 0;
+      const el = document.getElementById('r-balance');
+      if (el) el.textContent = '$' + balance;
+    }).catch(() => {});
 
     // Limpieza al desmontar
     return () => {
@@ -168,11 +187,11 @@ function Ruleta() {
         <div style={{ maxWidth: 780, margin: '0 auto' }}>
           <h1 style={{ textAlign: 'center', color: '#d4a017', letterSpacing: 2, marginBottom: '1.5rem' }}>RULETA</h1>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '265px 1fr', gap: '1.5rem', alignItems: 'start' }}>
+          <div className="r-main-grid">
 
             {/* Rueda */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
-              <svg id="roulette-wheel" width="250" height="250" viewBox="0 0 250 250">
+              <svg id="roulette-wheel" viewBox="0 0 250 250" style={{ width: '100%', maxWidth: 250, height: 'auto' }}>
                 <g id="wheel-group" style={{ transformOrigin: '125px 125px' }}></g>
                 <circle cx="125" cy="125" r="22" fill="#111" stroke="#444" strokeWidth="2"/>
                 <circle cx="125" cy="125" r="7"  fill="#d4a017"/>
@@ -217,7 +236,7 @@ function Ruleta() {
 
               <div style={styles.balanceRow}>
                 <span style={styles.balLbl}>Saldo</span>
-                <span id="r-balance" style={styles.balVal}>$500</span>
+                <span id="r-balance" style={styles.balVal}>$0</span>
               </div>
               <div style={{...styles.balanceRow, borderTop: 'none', paddingTop: 0}}>
                 <span style={styles.balLbl}>Apuesta actual</span>
@@ -239,6 +258,18 @@ function Ruleta() {
       <FooterCasino />
 
       <style>{`
+        .r-main-grid {
+          display: grid;
+          grid-template-columns: 265px 1fr;
+          gap: 1.5rem;
+          align-items: start;
+        }
+        @media (max-width: 600px) {
+          .r-main-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
         .r-chip { transition: transform .15s, box-shadow .15s; }
         .r-chip:hover { transform: scale(1.1); }
         .r-chip.selected { box-shadow: 0 0 0 3px #d4a017, 0 0 0 5px #111; }

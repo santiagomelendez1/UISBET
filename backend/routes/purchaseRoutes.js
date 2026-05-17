@@ -59,35 +59,104 @@ router.get('/stats/mine', authRequired, async (req, res) => {
   }
 });
 
-/* Registra compra. */
+/* Registra compra y acredita fichas si el pago está confirmado. */
 router.post('/', authRequired, async (req, res) => {
+  const connection = await pool.getConnection();
   try {
     const { package_id, payment_reference, status = 'pagada' } = req.body;
 
-    const [result] = await pool.query(
+    const [pkgs] = await connection.query(
+      'SELECT chips FROM chip_packages WHERE id = ?',
+      [package_id]
+    );
+    if (pkgs.length === 0) {
+      connection.release();
+      return res.status(404).json({ message: 'Paquete no encontrado.' });
+    }
+
+    await connection.beginTransaction();
+
+    const [result] = await connection.query(
       'INSERT INTO purchases (user_id, package_id, payment_reference, status) VALUES (?, ?, ?, ?)',
       [req.user.id, package_id, payment_reference || null, status]
     );
 
+    if (status === 'pagada') {
+      await connection.query(
+        'UPDATE users SET balance = balance + ? WHERE id = ?',
+        [pkgs[0].chips, req.user.id]
+      );
+    }
+
+    await connection.commit();
     return res.status(201).json({ message: 'Compra registrada.', id: result.insertId });
   } catch (error) {
+    await connection.rollback();
     return res.status(500).json({ message: 'Error al registrar compra.', error: error.message });
+  } finally {
+    connection.release();
   }
 });
 
-/* Actualiza compra. */
+/* Actualiza compra y recalcula balance según cambio de estado/paquete. */
 router.put('/:id', authRequired, adminRequired, async (req, res) => {
+  const connection = await pool.getConnection();
   try {
     const { package_id, payment_reference, status } = req.body;
 
-    await pool.query(
+    /* Compra actual para saber el estado/paquete previo. */
+    const [rows] = await connection.query(
+      'SELECT p.user_id, p.status AS old_status, p.package_id AS old_pkg_id, cp.chips AS old_chips FROM purchases p INNER JOIN chip_packages cp ON cp.id = p.package_id WHERE p.id = ?',
+      [req.params.id]
+    );
+    if (rows.length === 0) {
+      connection.release();
+      return res.status(404).json({ message: 'Compra no encontrada.' });
+    }
+
+    const { user_id, old_status, old_pkg_id, old_chips } = rows[0];
+
+    const [newPkgs] = await connection.query(
+      'SELECT chips FROM chip_packages WHERE id = ?',
+      [package_id]
+    );
+    if (newPkgs.length === 0) {
+      connection.release();
+      return res.status(404).json({ message: 'Paquete no encontrado.' });
+    }
+    const new_chips = newPkgs[0].chips;
+
+    /* Calcula el delta de balance según los estados anterior y nuevo. */
+    let delta = 0;
+    if (old_status === 'pagada' && status === 'pagada') {
+      delta = new_chips - old_chips;           // cambio de paquete sin cambiar estado
+    } else if (old_status === 'pagada' && status !== 'pagada') {
+      delta = -old_chips;                      // se cancela/pone pendiente → devuelve fichas negativas
+    } else if (old_status !== 'pagada' && status === 'pagada') {
+      delta = new_chips;                       // se confirma pago → acredita fichas
+    }
+
+    await connection.beginTransaction();
+
+    await connection.query(
       'UPDATE purchases SET package_id = ?, payment_reference = ?, status = ? WHERE id = ?',
       [package_id, payment_reference || null, status, req.params.id]
     );
 
+    if (delta !== 0) {
+      await connection.query(
+        'UPDATE users SET balance = GREATEST(0, balance + ?) WHERE id = ?',
+        [delta, user_id]
+      );
+    }
+
+    await connection.commit();
     return res.json({ message: 'Compra actualizada.' });
   } catch (error) {
+    await connection.rollback();
     return res.status(500).json({ message: 'Error al actualizar compra.', error: error.message });
+  } finally {
+    connection.release();
   }
 });
 
