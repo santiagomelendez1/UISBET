@@ -443,3 +443,37 @@ header {
     font-size: 1.8rem;
   }
 }
+
+
+/* NUEVAS ETIQUETAS FASE 2 */
+
+/* Etiqueta del usuario logueado. */
+.user-badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background-color: rgba(212, 175, 55, 0.16);
+  color: var(--gold-soft);
+  font-size: 0.9rem;
+}
+
+/* Card de formularios. */
+.form-card {
+  background-color: var(--black-card);
+  color: var(--white-soft);
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  margin-top: 110px;
+}
+
+.form-card .form-control,
+.form-card .form-select,
+.form-card .input-group-text {
+  background-color: #101010;
+  color: var(--white-soft);
+  border-color: rgba(212, 175, 55, 0.18);
+}
+
+.form-card .form-control:focus,
+.form-card .form-select:focus {
+  box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.15);
+  border-color: var(--gold-main);
+}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Form, Button, InputGroup } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { apiRequest } from '../services/api';
 
 /**
  * Formulario de registro. Su función es permitir que el usuario ingrese
@@ -14,6 +15,45 @@ function Registro() {
    */
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  /* Mensajes del formulario. */
+  const [message, setMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const navigate = useNavigate();
+
+  /* Envía el registro al backend. */
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setMessage('');
+    setErrorMessage('');
+
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const confirmPassword = e.target.confirmPassword.value;
+
+    if (password !== confirmPassword) {
+      setErrorMessage('Las contraseñas no coinciden.');
+      return;
+    }
+
+    try {
+      await apiRequest('/auth/register', {
+        method: 'POST',
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      setMessage('Registro exitoso. Ahora puedes iniciar sesión.');
+      e.target.reset();
+
+      setTimeout(() => {
+        navigate('/login');
+      }, 1200);
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
+  };
 
   return (
     <>
@@ -29,19 +69,35 @@ function Registro() {
               Registro
             </h2>
 
+            {/* Mensaje de éxito. */}
+            {message && <p className="text-success">{message}</p>}
+
+            {/* Mensaje de error. */}
+            {errorMessage && <p className="text-danger">{errorMessage}</p>}
+
             {/* Form agrupa todos los campos del formulario. */}
-            <Form>
+            <Form onSubmit={handleSubmit}>
               
               {/* Campo para ingresar el nombre del usuario. */}
               <Form.Group className="mb-3">
                 <Form.Label>Nombre</Form.Label>
-                <Form.Control type="text" placeholder="Ingresa tu nombre" />
+                <Form.Control
+                  name="name"
+                  type="text"
+                  placeholder="Ingresa tu nombre"
+                  required
+                />
               </Form.Group>
 
               {/* Campo para ingresar el correo electrónico. */}
               <Form.Group className="mb-3">
                 <Form.Label>Correo Electrónico</Form.Label>
-                <Form.Control type="email" placeholder="Ingresa tu email" />
+                <Form.Control
+                  name="email"
+                  type="email"
+                  placeholder="Ingresa tu email"
+                  required
+                />
               </Form.Group>
 
               {/* Campo de contraseña. */}
@@ -53,14 +109,17 @@ function Registro() {
                   
                   {/* Si showPassword es true se muestra el texto; si no, se oculta. */}
                   <Form.Control
+                    name="password"
                     type={showPassword ? 'text' : 'password'}
                     placeholder="Ingresa tu contraseña"
+                    required
                   />
 
                   <InputGroup.Text>
                     
                     {/* Botón para alternar la visibilidad de la contraseña. */}
                     <Button
+                      type="button"
                       variant="link"
                       onClick={() => setShowPassword(!showPassword)}
                       style={{ padding: 0, border: 'none', background: 'none' }}
@@ -81,14 +140,17 @@ function Registro() {
                   
                   {/* Si showConfirmPassword es true se muestra el texto; si no, se oculta. */}
                   <Form.Control
+                    name="confirmPassword"
                     type={showConfirmPassword ? 'text' : 'password'}
                     placeholder="Confirma tu contraseña"
+                    required
                   />
 
                   <InputGroup.Text>
                     
                     {/* Botón para alternar la visibilidad de la confirmación. */}
                     <Button
+                      type="button"
                       variant="link"
                       onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                       style={{ padding: 0, border: 'none', background: 'none' }}

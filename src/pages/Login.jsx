@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Card, Form, Button, InputGroup } from 'react-bootstrap';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import { apiRequest } from '../services/api';
 
 
 /**
@@ -16,10 +17,11 @@ function Login() {
    */
   const [showPassword, setShowPassword] = useState(false);
 
-  /**
-   * Obtiene la función para cambiar el estado global del login.
-   */
-  const { setIsLoggedIn } = useContext(AuthContext);
+  /* Mensaje de error. */
+  const [errorMessage, setErrorMessage] = useState('');
+
+  /* Obtiene la función para cambiar el estado global del login.  */
+  const { login } = useContext(AuthContext);
 
   /**
    * Hook para navegar a otra ruta después del login.
@@ -29,18 +31,26 @@ function Login() {
   /**
    * Si las credenciales son correctas, activa el login y redirige.
    */
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMessage('');
 
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    /* Usuario de prueba para la primera fase. */
-    if (email === 'admin@gmail.com' && password === '1234') {
-      setIsLoggedIn(true);
+    /* Intenta enviar las credenciales al backend. 
+      Si el login es correcto, guarda la sesión y redirige a juegos.
+      Si ocurre un error, muestra el mensaje correspondiente. */
+    try {
+      const data = await apiRequest('/auth/login', {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+      });
+
+      login(data);
       navigate('/juegos');
-    } else {
-      alert('Credenciales incorrectas');
+    } catch (error) {
+      setErrorMessage(error.message);
     }
   };
 
@@ -57,6 +67,8 @@ function Login() {
             <h2 className="text-center mb-4" style={{ color: 'var(--gold-main)' }}>
               Iniciar Sesión
             </h2>
+
+            {errorMessage && <p className="text-danger mb-3">{errorMessage}</p>}
 
             {/* Form agrupa todos los campos del formulario. */}
             <Form onSubmit={handleSubmit}>

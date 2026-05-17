@@ -1,12 +1,16 @@
 import { Container, Card, Row, Col, Accordion } from 'react-bootstrap';
 import NavbarCasino from '../components/NavbarCasino';
 import FooterCasino from '../components/FooterCasino';
+import { BASE_URL } from '../services/api';
 
 /**
  * Este componente representa la sección "Información" o "Sobre nosotros"
  * del sitio UISBET.COM.
  */
 function Empresa() {
+
+  const images = ['bga1.jpg', 'bga2.jpg', 'bga3.jpg'];
+
   return (
     <>
       <NavbarCasino />
@@ -44,6 +48,28 @@ function Empresa() {
           La seguridad de nuestros usuarios es una prioridad. Implementamos medidas para proteger la información personal y garantizar una experiencia confiable.
           Promovemos el juego responsable y recomendamos a nuestros usuarios hacer uso consciente de la plataforma.
         </p>
+
+        <div className="section-title mt-5 mb-4">
+            <span>Servidor de contenidos</span>
+            <h2>Más sobre nuestra sede central</h2>
+          </div>
+
+          <Row className="g-4">
+            {images.map((image, index) => (
+              <Col md={4} key={image}>
+                <Card className="feature-card h-100 text-center">
+                  <Card.Img
+                    variant="top"
+                    src={`http://localhost:4000/turismo/${image}`}
+                    alt={`Turismo ${index + 1}`}
+                  />
+                  <Card.Body>
+                    <Card.Title>Imagen {index + 1}</Card.Title>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
 
         </Container>
       </section>

@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 import NavbarCasino from './NavbarCasino';
 import FooterCasino from './FooterCasino';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 // Importa componentes de React-Bootstrap necesarios.
 import {
@@ -29,9 +30,11 @@ import '../styles/Home.css';
  */
 function Home() {
 
-// Estado que controla si el panel de detalles del saldo está visible o colapsado.
-  
+// Estado que controla si el panel de detalles del saldo está visible o colapsado. 
   const [openInfo, setOpenInfo] = useState(false);
+
+// Estado global del login. 
+  const { isLoggedIn, user } = useContext(AuthContext);
 
   /**
    * Popover (tarjeta emergente informativa) sobre el saldo de demostración.
@@ -63,17 +66,25 @@ function Home() {
                   <div className="carousel-panel panel-one">
                     <div className="carousel-overlay">
                       <span className="small-label">Casino virtual</span>
-                      <h1>Bienvenido a UISBET.COM</h1>
+                      <h1>{isLoggedIn ? `Bienvenido, ${user?.name}` : 'Bienvenido a UISBET.COM'}</h1>
                       <p>
-                        Explora nuestro casino virtual con estilo moderno donde podrás
-                        divertirte y ganar en juegos como Baccarat y la ruleta.
+                        {isLoggedIn
+                          ? 'Ya puedes acceder a juegos, saldo, compra de fichas y subida de archivos.'
+                          : 'Como visitante puedes ver la información general. Para usar el sistema completo debes iniciar sesión.'}
                       </p>
 
                       {/* Botones de navegación hacia otras secciones del sitio */}
                       <div className="d-flex gap-2 flex-wrap items-center justify-content-center">
-                        <Button as={Link} to="/juegos" variant="warning">
-                          Ver juegos
-                        </Button>
+                        {isLoggedIn ? (
+                          <Button as={Link} to="/juegos" variant="warning">
+                            Ver juegos
+                          </Button>
+                        ) : (
+                          <Button as={Link} to="/login" variant="warning">
+                            Iniciar sesión
+                          </Button>
+                        )}
+
                         <Button as={Link} to="/empresa" variant="outline-light">
                           Conocer más
                         </Button>
@@ -91,8 +102,8 @@ function Home() {
                       <p>
                         Encuentra nuestros distintos paquetes de compra de fichas para seguir jugando.
                       </p>
-                      <Button as={Link} to="/fichas" variant="warning">
-                        Ir a fichas
+                      <Button as={Link} to={isLoggedIn ? '/fichas' : '/login'} variant="warning">
+                        Ir ahora
                       </Button>
                     </div>
                   </div>
