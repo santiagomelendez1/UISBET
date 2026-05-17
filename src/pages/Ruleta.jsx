@@ -117,7 +117,7 @@ function Ruleta() {
       if (win > 0) {
         balance += win;
         document.getElementById('r-balance').textContent = '$' + balance;
-        setMsg('win', '¡Ganaste $' + win + '! 🎉');
+        setMsg('win', '¡Ganaste $' + win + '!');
       } else {
         setMsg('lose', 'Salió ' + num + ' (' + colorName + '). Perdiste $' + betAmount);
       }
@@ -166,7 +166,7 @@ function Ruleta() {
       <NavbarCasino />
       <div style={{ background: '#111', minHeight: '100vh', color: '#fff', padding: '2rem 1rem', marginTop: '90px' }}>
         <div style={{ maxWidth: 780, margin: '0 auto' }}>
-          <h1 style={{ textAlign: 'center', color: '#d4a017', letterSpacing: 2, marginBottom: '1.5rem' }}>🎡 RULETA</h1>
+          <h1 style={{ textAlign: 'center', color: '#d4a017', letterSpacing: 2, marginBottom: '1.5rem' }}>RULETA</h1>
 
           <div style={{ display: 'grid', gridTemplateColumns: '265px 1fr', gap: '1.5rem', alignItems: 'start' }}>
 
@@ -180,7 +180,7 @@ function Ruleta() {
               </svg>
               <div style={{ textAlign: 'center', minHeight: 56 }}>
                 <div id="result-num" style={{ fontSize: 40, fontWeight: 700, color: '#d4a017' }}>—</div>
-                <div id="result-lbl" style={{ fontSize: 13, color: '#888', marginTop: 2 }}>Haz tu apuesta y gira</div>
+                <div id="result-lbl" style={{ fontSize: 12, color: '#555', marginTop: 4, letterSpacing: 2, textTransform: 'uppercase', fontWeight: 600 }}>HAZ TU APUESTA Y GIRA</div>
               </div>
             </div>
 
@@ -208,8 +208,7 @@ function Ruleta() {
                   ['dozen3','3ª Docena','2:1'],['green','🟢 Cero (0)','35:1'],
                 ].map(([t, label, odds]) => (
                   <div key={t} className="bet-opt"
-                    onClick={(e) => window.rSelectBet(t, e.currentTarget)}
-                    style={styles.betOpt}>
+                    onClick={(e) => window.rSelectBet(t, e.currentTarget)}>
                     {label}
                     <span style={{ fontSize: 10, color: '#666' }}>paga {odds}</span>
                   </div>
@@ -230,7 +229,7 @@ function Ruleta() {
                 <button onClick={() => window.rClearBet()} style={styles.btnClear}>Limpiar</button>
               </div>
 
-              <div id="r-msg" className="r-msg-box r-msg-neutral" style={styles.msgNeutral}>
+              <div id="r-msg" className="r-msg-box r-msg-neutral">
                 Selecciona apuesta y ficha
               </div>
             </div>
@@ -240,12 +239,30 @@ function Ruleta() {
       <FooterCasino />
 
       <style>{`
+        .r-chip { transition: transform .15s, box-shadow .15s; }
+        .r-chip:hover { transform: scale(1.1); }
         .r-chip.selected { box-shadow: 0 0 0 3px #d4a017, 0 0 0 5px #111; }
-        .bet-opt { padding:9px 6px; border:1px solid #2a2a2a; border-radius:7px;
-          background:#1a1a1a; cursor:pointer; font-size:13px; font-weight:500;
-          text-align:center; color:#ccc; display:flex; flex-direction:column; gap:2px; }
-        .bet-opt:hover { border-color:#555; background:#222; }
-        .bet-opt.selected { border-color:#d4a017; background:#1e1800; color:#d4a017; }
+
+        .bet-opt {
+          padding: 9px 6px;
+          border: 1px solid #2a2a2a;
+          border-radius: 7px;
+          background: #1a1a1a;
+          cursor: pointer;
+          font-size: 13px;
+          font-weight: 500;
+          text-align: center;
+          color: #ccc;
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          transition: all .15s;
+          user-select: none;
+        }
+        .bet-opt:hover { border-color: #555; background: #222; }
+        .bet-opt.selected { border-color: #d4a017; background: #1e1800; color: #d4a017; }
+        .bet-opt.selected span { color: #a07810; }
+
         .r-msg-box { padding:12px; border-radius:8px; font-size:14px; font-weight:600;
           text-align:center; min-height:44px; display:flex; align-items:center; justify-content:center; }
         .r-msg-win     { background:#1a2e1a; color:#66bb6a; border:1px solid #2e7d32; }
@@ -261,15 +278,11 @@ const styles = {
   balanceRow:   { display:'flex', justifyContent:'space-between', alignItems:'center', padding:'8px 0', borderTop:'1px solid #222' },
   balLbl:       { fontSize:13, color:'#888' },
   balVal:       { fontSize:18, fontWeight:700, color:'#d4a017' },
-  betOpt:       { padding:'9px 6px', border:'1px solid #2a2a2a', borderRadius:7, background:'#1a1a1a',
-                  cursor:'pointer', fontSize:13, display:'flex', flexDirection:'column', gap:2, textAlign:'center', color:'#ccc' },
   btnMain:      { flex:1, padding:13, border:'1px solid #d4a017', borderRadius:8, background:'transparent',
-                  color:'#d4a017', fontSize:15, fontWeight:700, cursor:'pointer', letterSpacing:'.5px' },
+                  color:'#d4a017', fontSize:15, fontWeight:700, cursor:'pointer', letterSpacing:'.5px',
+                  transition:'all .15s' },
   btnClear:     { padding:'13px 18px', border:'1px solid #333', borderRadius:8, background:'transparent',
-                  color:'#888', fontSize:14, cursor:'pointer' },
-  msgNeutral:   { padding:12, borderRadius:8, fontSize:14, fontWeight:600, textAlign:'center',
-                  minHeight:44, display:'flex', alignItems:'center', justifyContent:'center',
-                  background:'#1a1a1a', color:'#888', border:'1px solid #2a2a2a' },
+                  color:'#888', fontSize:14, cursor:'pointer', transition:'all .15s' },
 };
 
 export default Ruleta;
