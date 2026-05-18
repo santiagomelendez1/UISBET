@@ -44,7 +44,7 @@ function Login() {
       });
 
       login(data);
-      navigate('/juegos');
+      navigate('/');
     } catch (error) {
       setErrorMessage(error.message);
     }
