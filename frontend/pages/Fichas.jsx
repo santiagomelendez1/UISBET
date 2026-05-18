@@ -1,7 +1,6 @@
 import { Container, Card, Row, Col, Button, Modal, Form } from 'react-bootstrap';
 import NavbarCasino from '../components/NavbarCasino';
 import FooterCasino from '../components/FooterCasino';
-import Formulario from './Formulario';
 import { useContext, useEffect, useState } from 'react';
 
 import { apiRequest } from '../services/api';
