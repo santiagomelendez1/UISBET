@@ -35,15 +35,13 @@ Set-ExecutionPolicy RemoteSigned
 
 4. Cuando pregunte si deseas confirmar, escribe `S` y presiona Enter.
 
-> Esto solo se hace una vez en el equipo. Permite ejecutar scripts locales como los de npm.
-
 ---
 
 ## Paso 2 — Instalar Node.js (incluye npm)
 
-1. Ve a [https://nodejs.org](https://nodejs.org) y descarga la versión **LTS** (la recomendada).
-2. Ejecuta el instalador y sigue los pasos (siguiente, siguiente, instalar). No cambies ninguna opción por defecto.
-3. Una vez instalado, abre una nueva terminal de PowerShell (no es necesario que sea administrador) y verifica la instalación:
+1. Ve a [https://nodejs.org](https://nodejs.org) y descarga
+2. Ejecuta el instalador y sigue los pasos. No cambies ninguna opción por defecto.
+3. Una vez instalado, abre una nueva terminal de PowerShell y verifica la instalación:
 
 ```
 node -v
@@ -56,7 +54,7 @@ Ambos comandos deben mostrar un número de versión. Si es así, Node.js y npm q
 
 ## Paso 3 — Instalar Express de forma global
 
-Con PowerShell abierto (puede ser como usuario normal), ejecuta:
+Con PowerShell abierto, ejecuta:
 
 ```
 npm install express -g
@@ -71,9 +69,7 @@ Esto instala Express globalmente en el sistema para que esté disponible desde c
 XAMPP es el programa que levanta el servidor de MySQL que el proyecto necesita para la base de datos.
 
 1. Ve a [https://www.apachefriends.org](https://www.apachefriends.org) y descarga **XAMPP para Windows**.
-2. Ejecuta el instalador. Si aparece una advertencia de UAC (Control de cuentas), acepta.
-3. Instala en la ruta por defecto (`C:\xampp`). Deja todas las opciones marcadas por defecto.
-4. Al terminar la instalación, abre el **XAMPP Control Panel**.
+2. Al terminar la instalación, abre el **XAMPP Control Panel**.
 
 ---
 
@@ -104,17 +100,15 @@ cd UISBET
 
 ---
 
-
-
 ## Paso 7 — Instalar dependencias del backend y correrlo
 
 En la terminal, entra a la carpeta del backend:
 
 ```
-cd backend
+cd UISBET/backend
 ```
 
-Instala todas las dependencias del backend (bcryptjs, cors, dotenv, jsonwebtoken, multer, mysql2):
+Instala todas las dependencias del backend:
 
 ```
 npm install
@@ -138,13 +132,13 @@ Servidor backend ejecutándose en http://localhost:4000
 
 ## Paso 8 — Instalar dependencias del frontend y correrlo
 
-Abre una **segunda terminal** en VS Code (`+` en el panel de terminales). Asegúrate de estar en la carpeta raíz del proyecto (`UISBET/`). Si estás dentro de `backend/`, sube un nivel:
+Abre una **segunda terminal** en VS Code (`+` en el panel de terminales). Asegúrate de estar en la carpeta raíz del proyecto (`UISBET/`).
 
 ```
-cd ..
+cd UISBET/frontend
 ```
 
-Instala todas las dependencias del frontend. Este comando instala React, React Router DOM, Bootstrap, React Bootstrap y Vite (todo está declarado en el `package.json` raíz):
+Instala todas las dependencias del frontend:
 
 ```
 npm install
@@ -154,14 +148,6 @@ Una vez que termine, corre el servidor de desarrollo del frontend:
 
 ```
 npm run dev
-```
-
-Deberías ver algo como:
-
-```
-  VITE v8.x.x  ready in xxx ms
-
-  ➜  Local:   http://localhost:5173/
 ```
 
 ---
