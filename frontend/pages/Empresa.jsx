@@ -55,6 +55,7 @@ function Empresa() {
           </div>
 
           <Row className="g-4">
+            {/* Recorremos la ruta pública para mostrar las fotos en Cards */}
             {images.map((image, index) => (
               <Col md={4} key={image}>
                 <Card className="feature-card h-100 text-center">

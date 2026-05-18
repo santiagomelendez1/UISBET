@@ -5,11 +5,12 @@ import FooterCasino from '../components/FooterCasino';
 import { AuthContext } from '../context/AuthContext';
 import { apiRequest } from '../services/api';
 
-/**
- * CRUD de compras.
- */
+/* CRUD de compras. */
 function AdminCompras() {
+  /* Obtiene el token de la sesión actual. */
   const { token } = useContext(AuthContext);
+
+  /* Estados de la sección. */
   const [purchases, setPurchases] = useState([]);
   const [packages, setPackages] = useState([]);
   const [editingId, setEditingId] = useState(null);
@@ -19,6 +20,7 @@ function AdminCompras() {
     status: 'pagada',
   });
 
+  /* Carga compras y paquetes desde el backend. */
   const loadData = async () => {
     const purchasesData = await apiRequest('/purchases', {}, token);
     const packageData = await apiRequest('/packages');
@@ -26,12 +28,15 @@ function AdminCompras() {
     setPackages(packageData);
   };
 
+  /* Carga la información al abrir la página. */
   useEffect(() => {
     loadData();
   }, [token]);
 
+  /* Actualiza el estado del formulario al escribir o seleccionar valores. */
   const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  /* Envía la actualización de la compra al backend. */
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -44,11 +49,13 @@ function AdminCompras() {
       token
     );
 
+    /* Limpia el modo edición y recarga la tabla. */
     setEditingId(null);
     setFormData({ package_id: '', payment_reference: '', status: 'pagada' });
     loadData();
   };
 
+  /* Carga en el formulario la compra seleccionada para editar. */
   const handleEdit = (purchase) => {
     setEditingId(purchase.id);
     setFormData({
@@ -58,6 +65,7 @@ function AdminCompras() {
     });
   };
 
+  /* Elimina una compra según su id. */
   const handleDelete = async (id) => {
     await apiRequest(`/purchases/${id}`, { method: 'DELETE' }, token);
     loadData();
@@ -65,18 +73,25 @@ function AdminCompras() {
 
   return (
     <>
+      {/* Barra de navegación superior. */}
       <NavbarCasino />
 
+      {/* Sección principal del mantenimiento de compras. */}
       <section className="section-dark py-5" style={{ marginTop: '90px', minHeight: '100vh' }}>
         <Container>
+          
+          {/* Título principal de la sección. */}
           <div className="section-title mb-4">
             <span>CRUD</span>
             <h2>Mantenimiento de compras</h2>
           </div>
 
+          {/* Formulario de edición visible solo si hay una compra seleccionada. */}
           {editingId && (
             <Card className="feature-card p-4 mb-4">
               <Form onSubmit={handleSubmit}>
+                
+                {/* Selector del paquete asociado a la compra. */}
                 <Form.Group className="mb-3">
                   <Form.Label>Paquete</Form.Label>
                   <Form.Select name="package_id" value={formData.package_id} onChange={handleChange}>
@@ -88,6 +103,7 @@ function AdminCompras() {
                   </Form.Select>
                 </Form.Group>
 
+                {/* Campo para editar la referencia de pago. */}
                 <Form.Group className="mb-3">
                   <Form.Label>Referencia</Form.Label>
                   <Form.Control
@@ -97,6 +113,7 @@ function AdminCompras() {
                   />
                 </Form.Group>
 
+                {/* Selector del estado actual de la compra. */}
                 <Form.Group className="mb-3">
                   <Form.Label>Estado</Form.Label>
                   <Form.Select name="status" value={formData.status} onChange={handleChange}>
@@ -106,6 +123,7 @@ function AdminCompras() {
                   </Form.Select>
                 </Form.Group>
 
+                {/* Botón para guardar la actualización de la compra. */}
                 <Button type="submit" variant="warning">
                   Actualizar compra
                 </Button>
@@ -113,6 +131,7 @@ function AdminCompras() {
             </Card>
           )}
 
+          {/* Card que contiene la tabla de compras registradas. */}
           <Card className="feature-card p-4">
             <Table responsive striped bordered variant="dark">
               <thead>
@@ -127,6 +146,7 @@ function AdminCompras() {
               </thead>
 
               <tbody>
+                {/* Recorre las compras y crea una fila por cada una. */}
                 {purchases.map((purchase) => (
                   <tr key={purchase.id}>
                     <td>{purchase.id}</td>
@@ -134,6 +154,8 @@ function AdminCompras() {
                     <td>{purchase.email}</td>
                     <td>{purchase.package_name}</td>
                     <td>{purchase.status}</td>
+                    
+                    {/* Botones para editar o eliminar la compra. */}
                     <td className="d-flex gap-2 flex-wrap">
                       <Button size="sm" variant="outline-warning" onClick={() => handleEdit(purchase)}>
                         Editar
@@ -150,6 +172,7 @@ function AdminCompras() {
         </Container>
       </section>
 
+      {/* Pie de página del sitio. */}
       <FooterCasino />
     </>
   );

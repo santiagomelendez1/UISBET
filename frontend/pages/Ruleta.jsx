@@ -1,9 +1,8 @@
-// ============================================================
+
 // Ruleta.jsx — Página del juego de ruleta europea
 // Maneja la lógica del juego completa dentro de un useEffect,
 // exponiendo funciones al objeto window para que el JSX pueda
 // llamarlas mediante eventos onClick.
-// ============================================================
 
 import { useEffect, useContext } from 'react';
 import NavbarCasino from '../components/NavbarCasino';

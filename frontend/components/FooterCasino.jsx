@@ -3,9 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 // Importa Link de react-router-dom para navegar entre rutas internas
 import { Link } from 'react-router-dom';
 
-/**
- * Este componente representa el pie de página del sitio 
- */
+/* Este componente representa el pie de página del sitio. */
 
 function FooterCasino() {
   return (

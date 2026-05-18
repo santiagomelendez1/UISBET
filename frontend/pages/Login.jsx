@@ -23,14 +23,10 @@ function Login() {
   /* Obtiene la función para cambiar el estado global del login.  */
   const { login } = useContext(AuthContext);
 
-  /**
-   * Hook para navegar a otra ruta después del login.
-   */
+  /* Hook para navegar a otra ruta después del login. */
   const navigate = useNavigate();
 
-  /**
-   * Si las credenciales son correctas, activa el login y redirige.
-   */
+  /* Si las credenciales son correctas, activa el login y redirige. */
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage('');

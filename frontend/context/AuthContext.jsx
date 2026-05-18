@@ -2,9 +2,7 @@ import { createContext, useMemo, useState } from 'react';
 
 export const AuthContext = createContext();
 
-/**
- * Contexto global del login.
- */
+/* Contexto global del login. */
 export function AuthProvider({ children }) {
   /* Guarda token y usuario autenticado. */
   const [token, setToken] = useState(localStorage.getItem('token') || '');
@@ -20,6 +18,7 @@ export function AuthProvider({ children }) {
   const login = (authData) => {
     setToken(authData.token);
     setUser(authData.user);
+    /* Guarda en localstorage para no perder info al recargar la página. */
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', JSON.stringify(authData.user));
   };
@@ -32,6 +31,7 @@ export function AuthProvider({ children }) {
     localStorage.removeItem('user');
   };
 
+  /* Construye objeto a compartir en el contexto. */
   const value = useMemo(
     () => ({ isLoggedIn, user, token, login, logout }),
     [isLoggedIn, user, token]

@@ -8,17 +8,7 @@ import { AuthContext } from '../context/AuthContext';
 import { apiRequest } from '../services/api';
 
 // Importa componentes de React-Bootstrap necesarios.
-import {
-  Button,
-  Card,
-  Carousel,
-  Col,
-  Collapse,
-  Container,
-  OverlayTrigger,
-  Popover,
-  Row,
-} from 'react-bootstrap';
+import { Button, Card, Carousel, Col, Collapse, Container, OverlayTrigger, Popover, Row } from 'react-bootstrap';
 
 import '../styles/Home.css';
 
@@ -31,11 +21,16 @@ import '../styles/Home.css';
  */
 function Home() {
 
+  /* Estado para abrir o cerrar la información desplegable. */
   const [openInfo, setOpenInfo] = useState(false);
+
+  /* Estado para guardar el saldo actual del usuario. */
   const [balance, setBalance] = useState(null);
 
+  /* Obtiene datos globales del usuario autenticado. */
   const { isLoggedIn, user, token } = useContext(AuthContext);
 
+  /* Consulta el saldo del usuario desde el backend. */
   const fetchBalance = () => {
     if (!token) return;
     apiRequest('/auth/me', {}, token)
@@ -44,9 +39,10 @@ function Home() {
   };
 
   useEffect(() => {
+    /* Carga el saldo al entrar a la página. */
     fetchBalance();
 
-    // Re-fetch cuando el usuario vuelve a esta pestaña
+    /* Vuelve a consultar el saldo al regresar a esta pestaña. */
     const handleVisibility = () => { if (document.visibilityState === 'visible') fetchBalance(); };
     document.addEventListener('visibilitychange', handleVisibility);
     return () => document.removeEventListener('visibilitychange', handleVisibility);
